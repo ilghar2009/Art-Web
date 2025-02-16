@@ -5,7 +5,7 @@
         <title>Sign up Page</title>
     </head>
 
-    <link rel="stylesheet" href="assets/css/signin.css">
+    <link rel="stylesheet" href="/assets/css/signin.css">
 
     <body>
 
@@ -19,12 +19,12 @@
                 <input type="submit" value="sign up">
                 <a href="index.html">Go Home</a>
                 <a href="login.html">login</a><br>
-                <a><img id="show" style="background-color:#fff; border-radius: 10px;" src="assets/picture/hide.png" alt="" width="30" height="30"></a>
+                <a><img id="show" style="background-color:#fff; border-radius: 10px;" src="/assets/picture/hide.png" alt="" width="30" height="30"></a>
             </form>
         </div>
 
-        <script src="assets/js/jquery.js"></script>
-        
+        <script src="/assets/js/jquery.js"></script>
+
         <script>
             $(document).ready(function(){
                 $("#show").click(function (){

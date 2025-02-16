@@ -1,16 +1,22 @@
 <!doctype html>
 <html lang="en">
-<head>
-    @include('theme.head')
-    @yield('head')
-</head>
-<body>
-    @include('theme.header')
+    <head>
+        @include('front.theme.head')
 
-    @yield('body')
+        @yield('head')
+    </head>
 
-    <script>
+    <body>
+
+        @include('front.theme.header')
+
+        @yield('body')
+
+        @include('front.theme.footer')
+
+        <script src="/assets/js/jquery.js"></script>
+
         @yield('script')
-    </script>
-</body>
+
+    </body>
 </html>

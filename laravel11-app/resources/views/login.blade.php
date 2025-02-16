@@ -3,7 +3,7 @@
     <head>
         <title>Login Page</title>
 
-        <link rel="stylesheet" href="../assets/css/login.css">
+        <link rel="stylesheet" href="/assets/css/login.css">
     </head>
     <body>
 
@@ -18,9 +18,9 @@
             </form>
         </div>
 
-        
-        <script src="assets/js/jquery.js"></script>
-        
+
+        <script src="/assets/js/jquery.js"></script>
+
         <script>
             $(document).ready(function(){
                 $("#show").click(function (){
