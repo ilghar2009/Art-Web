@@ -10,7 +10,7 @@
     <body>
 
         <div class="m">
-            <form class="form" action="auth.php" method="post">
+            <form class="form" action="{{route('register')}}" method="post">
                 <h2>Sign up</h2>
                 <input type="hidden" name="role" value="sign">
                 <input type="text" name="name" placeholder="Enter your Name..."><br>

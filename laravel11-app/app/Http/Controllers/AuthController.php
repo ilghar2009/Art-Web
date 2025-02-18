@@ -8,12 +8,12 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    public function sign_in(Request $request){
+    public function register(Request $request){
 
         $validate = validator()->make($request->all(), [
-           'name' => ['required', 'string', 'min:3', 'max:20'],
-           'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-           'password' => ['required', 'string', 'min:8',],
+            'name' => ['required', 'string', 'min:3', 'max:20'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8',],
         ]);
 
         if($validate->errors()->messages()){
@@ -22,6 +22,7 @@ class AuthController extends Controller
             );
         }else
             $request->password = Hash::make($request->password);
+
 
         $user = User::create($request->all());
 
