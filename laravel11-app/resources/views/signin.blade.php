@@ -17,8 +17,8 @@
                 <input type="text" name="mobile" placeholder="Enter your Phone Number..."><br>
                 <input  type="password" id="pass" name="password" placeholder="Enter your Password..."><br>
                 <input type="submit" value="sign up">
-                <a href="index.html">Go Home</a>
-                <a href="login.html">login</a><br>
+                <a href="{{route('home')}}">Go Home</a>
+                <a href="{{route('log_in')}}">login</a><br>
                 <a><img id="show" style="background-color:#fff; border-radius: 10px;" src="/assets/picture/hide.png" alt="" width="30" height="30"></a>
             </form>
         </div>

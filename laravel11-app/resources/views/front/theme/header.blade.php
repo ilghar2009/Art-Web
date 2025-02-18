@@ -24,7 +24,7 @@
 
     <!-- login and sign -->
     <div id="sign">
-        <a href="signin.html" class="col-2"><img class="sign-img" src="/assets/picture/icons8-human-30.png" alt="login/sign"></a>
+        <a href="{{route('sign')}}" class="col-2"><img class="sign-img" src="/assets/picture/icons8-human-30.png" alt="login/sign"></a>
     </div>
 
 </div>

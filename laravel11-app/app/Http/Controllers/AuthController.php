@@ -21,7 +21,7 @@ class AuthController extends Controller
                 redirect()->back()->withErrors(['result', '201'])
             );
         }else
-            $password = Hash::make($request->password);
+            $request->password = Hash::make($request->password);
 
         $user = User::create($request->all());
 
