@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\front;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ShowController extends Controller
 {
@@ -11,10 +11,10 @@ class ShowController extends Controller
     }
 
     public function sign_in(){
-        return view('signin');
+        return view('auth.sign_in');
     }
 
     public function login(){
-        return view('login');
+        return view('auth.login');
     }
 }

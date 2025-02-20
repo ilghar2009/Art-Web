@@ -2,7 +2,7 @@
 <html lang="en">
 
     <head>
-        <title>Sign up Page</title>
+        <title>Sign In Page</title>
     </head>
 
     <link rel="stylesheet" href="/assets/css/signin.css">
@@ -17,7 +17,7 @@
                 <input type="text" name="name" placeholder="Enter your Name..."><br>
                 <input type="text" name="email" placeholder="Enter your Phone Email..."><br>
                 <input  type="password" id="pass" name="password" placeholder="Enter your Password..."><br>
-                <input type="submit" value="sign up">
+                <input type="submit" value="sign up" onclick="auth()">
                 <a href="{{route('home')}}">Go Home</a>
                 <a href="{{route('login')}}">login</a><br>
                 <a><img id="show" style="background-color:#fff; border-radius: 10px;" src="/assets/picture/hide.png" alt="" width="30" height="30"></a>
@@ -27,6 +27,14 @@
         <script src="/assets/js/jquery.js"></script>
 
         <script>
+            function auth() {
+                $('input').removeClass('invalid');
+                console.log(1);
+
+                let is
+
+            }
+
             $(document).ready(function(){
                 $("#show").click(function (){
                     $("#pass").attr("type", "text");

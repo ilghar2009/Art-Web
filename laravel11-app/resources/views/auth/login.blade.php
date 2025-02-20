@@ -8,13 +8,13 @@
     <body>
 
         <div class="m">
-            <form class="form" action="auth.php" method="post">
+            <form class="form" action="{{route('log_in')}}" method="post">
                 <h2>Login</h2>
                 <input type="hidden" name="role" value="login">
                 <input type="text" id="name" class="name" name="mobile" placeholder="Enter your Phone Number..."><br>
                 <input type="password" id="password" name="password" placeholder="Enter your Password..."><br>
                 <input type="submit" value="log in">
-                <a href="index.php">Go Home</a>
+                <a href="{{route('home')}}">Go Home</a>
             </form>
         </div>
 

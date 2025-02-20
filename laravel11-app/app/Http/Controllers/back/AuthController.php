@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\back;
 
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,7 +26,7 @@ class AuthController extends Controller
 
             $request->password = Hash::make($request->password);
 
-//role 0 is admin && role 1 is client/user
+        //role 0 is admin && role 1 is client/user
 
             $user = User::create([
                 'name' => $request->name,
@@ -38,5 +39,14 @@ class AuthController extends Controller
 
             return route('home');
         }
+    }
+
+    public function log_in(Request $request){
+
+    }
+
+    public function logout(){
+        Auth::logout();
+        return Redirect::route('home');
     }
 }
