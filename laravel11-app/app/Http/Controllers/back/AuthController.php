@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\back;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cart;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,6 +34,10 @@ class AuthController extends Controller
                 'email' => $request->email,
                 'password' => $request->password,
                 'role' => 1,
+            ]);
+
+            Cart::create([
+                'user_id' => $user->user_id,
             ]);
 
             Auth::login($user);

@@ -2,10 +2,12 @@
 <html lang="en">
 
     <head>
-        <title>Sign In Page</title>
-    </head>
 
-    <link rel="stylesheet" href="/assets/css/signin.css">
+        <title>Sign In Page</title>
+
+        <link rel="stylesheet" href="/assets/css/signin.css">
+
+    </head>
 
     <body>
 

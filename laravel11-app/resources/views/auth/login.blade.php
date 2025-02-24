@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
     <head>
+
         <title>Login Page</title>
 
         <link rel="stylesheet" href="/assets/css/login.css">
+
     </head>
+
     <body>
 
         <div class="m">
             <form class="form" action="{{route('log_in')}}" method="post">
+                @csrf
                 <h2>Login</h2>
                 <input type="hidden" name="role" value="login">
                 <input type="text" id="name" class="name" name="mobile" placeholder="Enter your Phone Number..."><br>
