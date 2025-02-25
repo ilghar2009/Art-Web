@@ -6,7 +6,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
@@ -18,26 +17,11 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
-
-    protected $primaryKey = 'user_id';
-    protected $keyType = 'string';
-    public $incrementing = false;
-
-
     protected $fillable = [
-        'user_id',
         'name',
         'email',
         'password',
-        'role',
     ];
-
-    protected static function boot() {
-        parent::boot();
-        static::creating(function ($model) {
-            $model->user_id = (string)Str::uuid();
-        });
-    }
 
     /**
      * The attributes that should be hidden for serialization.
