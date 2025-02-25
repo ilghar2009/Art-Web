@@ -1,4 +1,4 @@
-
++
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Index - EasyFolio Bootstrap Template</title>
@@ -23,6 +23,9 @@
 
     <!-- Main CSS File -->
     <link href="/assets/css/main.css" rel="stylesheet">
+
+    {{--slider--}}
+    <link rel="stylesheet" type="text/css" href="/assets/scss/slide.scss">
 
     <!-- =======================================================
     * Template Name: EasyFolio
