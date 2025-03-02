@@ -9,4 +9,6 @@
 
 <!-- Main JS File -->
 <script src="/assets/js/main.js"></script>
-<script src="/assets/js/slide.js"></script>
+{{-- Slide js File--}}
+<script src="/assets/js/jquery.js"></script>
+
