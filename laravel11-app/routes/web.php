@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\back\BackshowController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\front\ShowController;
@@ -24,4 +25,14 @@ Route::group([], function(){
         Route::post('/back/dashboard/category/update/{category}', [CategoryController::class, 'update'])->name('category.update');
         Route::get('/back/dashboard/category/delete/{category}', [CategoryController::class, 'destroy'])->name('category.destroy');
         Route::get('/category/show/{category}', [ShowController::class, 'show'])->name('category.show');
+    //gallery
+
+    //comment
+
+    //Auth
+        Route::get('/auth/login/', [AuthController::class, 'log_in'])->name('login');
+        Route::get('/auth/register/', [AuthController::class, 'register'])->name('register');
+        Route::post('/back/auth/login/', [AuthController::class, 'login'])->name('back.login');
+        Route::post('/back/auth/register/', [AuthController::class, 'sign_in'])->name('back.register');
+
 });

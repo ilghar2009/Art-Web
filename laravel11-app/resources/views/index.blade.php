@@ -5,15 +5,19 @@
 @endsection
 
 @section('body')
+
   <main class="main">
 
       <!-- slider -->
-      <div id="slider">
-          <figure>
-              <img src="/assets/img/portfolio/portfolio-1.webp">
-              <img src="/assets/img/portfolio/portfolio-10.webp">
-              <img src="/assets/img/portfolio/portfolio-10.webp">
-          </figure>
+      <div class="m-s">
+          <div id="slider">
+              <figure>
+                  <img src="/assets/img/portfolio/portfolio-1.webp">
+                  <img src="/assets/img/portfolio/portfolio-1.webp">
+                  <img src="/assets/img/portfolio/portfolio-10.webp">
+                  <img src="/assets/img/portfolio/portfolio-10.webp">
+              </figure>
+          </div>
       </div>
 
       <!-- category -->
@@ -72,7 +76,7 @@
       </section><!-- /Portfolio Section -->
 
       <!-- product -->
-      <section id="portfolio" class="portfolio section">
+      <section id="resume" class="portfolio section">
 
           <!-- Section Title -->
           <div class="container section-title" data-aos="fade-up">

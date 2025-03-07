@@ -12,9 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('images', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->string('image');
-            $table->string('interface_id');
-            $table->integer('role')->default(1);
+            $table->string('gallery_id');
+            $table->integer('role')->default(1); // role 0 is original
             $table->timestamps();
         });
     }

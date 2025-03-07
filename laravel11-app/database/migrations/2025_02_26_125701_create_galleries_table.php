@@ -15,7 +15,8 @@ return new class extends Migration
             $table->string('gallery_id');
             $table->string('title');
             $table->longText('description')->nullable();
-            $table->string('category_id')->nullable();
+            $table->string('category_id');
+            $table->string('created_by');
             $table->timestamps();
         });
     }
@@ -26,5 +27,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('galleries');
+
     }
 };

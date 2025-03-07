@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('interfaces', function (Blueprint $table) {
-            $table->string('interface_id');
-            $table->string('gallery_id')->unique();
+        Schema::create('carts', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('user_id');
             $table->timestamps();
         });
     }
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('interfaces');
+        Schema::dropIfExists('carts');
     }
 };

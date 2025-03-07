@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+// use Illuminate\Contracts\AuthController\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
+use Illuminate\Support\Str;
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
@@ -17,7 +17,12 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
+
+    protected $primaryKey = "user_id";
+    protected $keyType = 'string';
+    public $incrementing = false;
     protected $fillable = [
+        'user_id',
         'name',
         'email',
         'password',
@@ -33,6 +38,12 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    protected static function boot(){
+        parent::boot();
+        static::creating(function($model){
+            $model->user_id = (string)Str::uuid();
+        });
+    }
     /**
      * Get the attributes that should be cast.
      *
@@ -44,5 +55,21 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function carts(){
+        return $this->hasOne(Cart::class);
+    }
+
+    public function galleries(){
+        return $this->hasMany(Gallery::class, 'created_by', 'user_id');
+    }
+
+    public function comments(){
+        return $this->hasMany(Comment::class, 'created_by', 'user_id');
+    }
+
+    public function likes(){
+        return $this->hasMany(Like::class);
     }
 }

@@ -37,11 +37,16 @@
          95% { left: -300%; }
          100% { left: -400%; }
      }
+     .m-s{
+         width: 80%;
+         text-align:center;
+         margin:auto;
+     }
      #slider { overflow: hidden; }
      #slider figure img { width: 20%; float: left; }
      #slider figure {
          position: relative;
-         width: 500%;
+         min-width: 500%;
          margin: 0;
          left: 0;
          text-align: left;
@@ -49,7 +54,7 @@
          animation: 18s slidy infinite;
      }
      #slider figure img{
-         max-height: 500px;
+         max-height: 600px;
      }
  </style>
 

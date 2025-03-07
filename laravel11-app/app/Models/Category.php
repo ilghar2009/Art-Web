@@ -25,4 +25,13 @@ class Category extends Model
             $model->category_id = (string)Str::uuid();
         });
     }
+
+    public function galleries(){
+        return $this->hasMany(Gallery::class);
+    }
+
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
+
 }

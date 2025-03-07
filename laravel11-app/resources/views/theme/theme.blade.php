@@ -1,3 +1,6 @@
+<?php
+use \Illuminate\Support\Facades\Auth;
+?>
 <!doctype html>
 <html lang="fn">
 <head>

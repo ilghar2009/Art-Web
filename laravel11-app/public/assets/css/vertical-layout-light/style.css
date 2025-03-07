@@ -106,7 +106,7 @@
     + X-editable
     + Wizard
   * Landing screens
-    + Auth
+    + AuthController
   * Horizontal Menu
     + Horizontal
 -------------------------------------------------------------------*/
@@ -28291,7 +28291,7 @@ div.tagsinput span.tag a {
 
 /*-------------------------------------------------------------------*/
 /* === Landing screens === */
-/* Auth */
+/* AuthController */
 .auth .login-half-bg {
   background: url("../../images/auth/login-bg.jpg");
   background-size: cover;
