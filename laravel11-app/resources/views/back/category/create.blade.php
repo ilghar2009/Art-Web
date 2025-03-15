@@ -2,6 +2,11 @@
 
 @section('head')
     <title>Category create</title>
+    <style>
+        p{
+            color:darkred;
+        }
+    </style>
 @endsection
 
 @section('body')
@@ -18,7 +23,12 @@
                             @csrf
                             <div class="form-group">
                                 <label for="exampleInputName1">Title</label>
-                                <input type="text" name="title" class="form-control" id="exampleInputName1" placeholder="Title">
+                                <input type="text" name="title" class="form-control" id="exampleInputName1" placeholder="Title" value="{{old('title')}}">
+
+                                @error('title')
+                                    <p>{{$message}}</p>
+                                @enderror
+
                             </div>
 
                             <div class="form-group">
@@ -34,7 +44,11 @@
 
                             <div class="form-group">
                                 <label for="exampleTextarea1">Description</label>
-                                <textarea class="form-control" name="description" id="exampleTextarea1" rows="4"></textarea>
+                                <textarea class="form-control" name="description" id="exampleTextarea1" rows="4">{{old('description')}}</textarea>
+
+                                @error('description')
+                                    <p>{{$message}}</p>
+                                @enderror
                             </div>
 
                             <button type="submit" class="btn btn-primary mr-2">Submit</button>

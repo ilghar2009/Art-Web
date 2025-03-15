@@ -13,15 +13,22 @@ use \Illuminate\Support\Facades\Auth;
         <nav id="navmenu" class="navmenu">
             <ul>
                 <li><a href="#hero" class="active">خانه</a></li>
-                <li><a href="#portfolio" style="">دسته بندی</a></li>
+                <li><a href="#category" style="">دسته بندی</a></li>
                 <li><a href="#about">درباره ی ما</a></li>
-                <li><a href="#resume">گالری</a></li>
+                <li><a href="#gallery">گالری</a></li>
+                @php
+                    if(Auth::user()?->role == true)
+                        $route = 'back.index';
+                    else
+                        $route = 'front.index';
+                @endphp
+
                 @if(!$user = Auth::user())
                     <li><a href="{{route('register')}}">ورود/ثبت نام</a></li>
                 @else
                     <li>
-                        <a href="{{route('register')}}">
-                           {{$user->name}} سلام
+                        <a href="{{route($route)}}">
+                            سلام {{$user->name}}
                         </a>
                     </li>
                 @endif

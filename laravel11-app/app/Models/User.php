@@ -57,19 +57,18 @@ class User extends Authenticatable
         ];
     }
 
-    public function carts(){
-        return $this->hasOne(Cart::class);
-    }
 
     public function galleries(){
         return $this->hasMany(Gallery::class, 'created_by', 'user_id');
     }
+
 
     public function comments(){
         return $this->hasMany(Comment::class, 'created_by', 'user_id');
     }
 
     public function likes(){
-        return $this->hasMany(Like::class);
+        return $this->hasMany(Like::class, 'user_id');
     }
+
 }

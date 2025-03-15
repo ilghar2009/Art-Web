@@ -1,7 +1,7 @@
 @extends('back.theme.theme')
 
 @section('head')
-    <title>Category create</title>
+    <title>Gallery Edit</title>
 @endsection
 
 @section('body')
@@ -10,34 +10,57 @@
             <div class="row">
                 <div class="col-md-12 grid-margin">
 
-                    <h4 class="card-title">Create Category</h4>
+                    <h4 class="card-title">edit Gallery</h4>
 
-                    <p class="card-description">
-                        Create new Category Record
-                    </p>
-
-                    <form class="forms-sample" action="{{route('category.update', $category->category_id)}}" method="post" enctype="multipart/form-data">
+                    <form class="forms-sample" action="{{route('gallery.update', $gallery->gallery_id)}}" method="post">
                         @csrf
                         <div class="form-group">
                             <label for="exampleInputName1">Title</label>
-                            <input type="text" name="title" class="form-control" id="exampleInputName1" placeholder="Title" value="{{$category->title}}">
+                            <input type="text" name="title" class="form-control" id="exampleInputName1" placeholder="Title" value="{{old('title')??$gallery->title}}">
+                            @error('title')
+                                <p>{{$message}}</p>
+                            @enderror
                         </div>
 
-                        <div class="form-group">
-                            <label>File upload</label>
-                            <input type="file" name="image" class="file-upload-default">
-                            <div class="input-group col-xs-12">
-                                <input type="text" name="image" class="form-control file-upload-info" disabled placeholder="Upload Image">
-                                <span class="input-group-append">
-                          <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                        </span>
+                        <div class="col-md-6 grid-margin stretch-card">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <p>Category_id</p>
+                                        <select name="category_id" class="form-control form-control-sm" id="exampleFormControlSelect3">
+                                            @foreach($categories as $category)
+
+                                                @if(old('category_id')??$category->category_id == $gallery->category_id)
+
+                                                    <option selected value="{{old('category_id')??$category->category_id}}">{{$category->title}}</option>
+
+                                                @else
+
+                                                    <option value="{{old('category_id')??$category->category_id}}">{{$category->title}}</option>
+
+                                                @endif
+                                            @endforeach
+
+                                            @error('category_id')
+                                                <p>{{$message}}</p>
+                                            @enderror
+
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
+
                         <div class="form-group">
                             <label for="exampleTextarea1">Description</label>
-                            <textarea class="form-control" name="description" id="exampleTextarea1" rows="4">{{$category->description}}</textarea>
+                            <textarea class="form-control" name="description" id="exampleTextarea1" rows="4">{{old('description')??$gallery->description}}</textarea>
+                            @error('description')
+                                <p>{{$message}}</p>
+                            @enderror
                         </div>
+
+                        <h5>created_by: {{$gallery->user->name}}.</h5>
 
                         <button type="submit" class="btn btn-primary mr-2">Submit</button>
                         <button class="btn btn-light">Cancel</button>
@@ -50,13 +73,10 @@
 @endsection
 
 @section('script')
-    <!-- Plugin js for this page -->
     <script src="/assets/vendors/typeahead.js/typeahead.bundle.min.js"></script>
     <script src="/assets/vendors/select2/select2.min.js"></script>
 
-    <!-- Custom js for this page-->
     <script src="/assets/js/file-upload.js"></script>
     <script src="/assets/js/typeahead.js"></script>
     <script src="/assets/js/select2.js"></script>
-    <!-- End custom js for this page-->
 @endsection

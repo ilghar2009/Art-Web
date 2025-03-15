@@ -12,16 +12,15 @@
       <div class="m-s">
           <div id="slider">
               <figure>
-                  <img src="/assets/img/portfolio/portfolio-1.webp">
-                  <img src="/assets/img/portfolio/portfolio-1.webp">
-                  <img src="/assets/img/portfolio/portfolio-10.webp">
-                  <img src="/assets/img/portfolio/portfolio-10.webp">
+                  @foreach($galleries as $gallery)
+                      <img src="{{$gallery->images->image??"/assets/img/portfolio/portfolio-1.webp"}}">
+                  @endforeach
               </figure>
           </div>
       </div>
 
       <!-- category -->
-      <section id="portfolio" class="portfolio section">
+      <section id="category" class="portfolio section">
 
           <!-- Section Title -->
           <div class="container section-title" data-aos="fade-up">
@@ -76,7 +75,7 @@
       </section><!-- /Portfolio Section -->
 
       <!-- product -->
-      <section id="resume" class="portfolio section">
+      <section id="gallery" class="portfolio section">
 
           <!-- Section Title -->
           <div class="container section-title" data-aos="fade-up">
@@ -104,18 +103,17 @@
 
                   <div class="row g-4 isotope-container" data-aos="fade-up" data-aos-delay="300">
 
+                      @foreach($galleries as $gallery)
                       <div class="col-lg-6 col-md-6 portfolio-item isotope-item filter-web">
                           <div class="portfolio-card">
                               <div class="portfolio-image">
-                                  <img src="/assets/img/portfolio/portfolio-1.webp" class="img-fluid" alt="" loading="lazy">
+                                  <img src="{{$gallery->images->image}}" class="img-fluid" alt="{{$gallery->title}}" loading="lazy">
 
                                   <div class="portfolio-overlay">
 
                                       <div class="portfolio-actions">
 
-{{--                                          <a href="/assets/img/portfolio/portfolio-1.webp" class="glightbox preview-link" data-gallery="portfolio-gallery-web">--}}
                                           <a href="#" class="bi bi-heart"></a>
-{{--                                          </a>--}}
 
                                           <a href="portfolio-details.html" class="details-link"><i class="bi bi-arrow-right"></i></a>
                                       </div>
@@ -124,77 +122,7 @@
                               </div>
                           </div>
                       </div><!-- End Portfolio Item -->
-
-                      <div class="col-lg-6 col-md-6 portfolio-item isotope-item filter-graphics">
-                          <div class="portfolio-card">
-                              <div class="portfolio-image">
-                                  <img src="/assets/img/portfolio/portfolio-10.webp" class="img-fluid" alt="" loading="lazy">
-                                  <div class="portfolio-overlay">
-                                      <div class="portfolio-actions">
-                                          <a href="/assets/img/portfolio/portfolio-10.webp" class="glightbox preview-link" data-gallery="portfolio-gallery-graphics"><i class="bi bi-eye"></i></a>
-                                          <a href="portfolio-details.html" class="details-link"><i class="bi bi-arrow-right"></i></a>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div><!-- End Portfolio Item -->
-
-                      <div class="col-lg-6 col-md-6 portfolio-item isotope-item filter-motion">
-                          <div class="portfolio-card">
-                              <div class="portfolio-image">
-                                  <img src="/assets/img/portfolio/portfolio-7.webp" class="img-fluid" alt="" loading="lazy">
-                                  <div class="portfolio-overlay">
-                                      <div class="portfolio-actions">
-                                          <a href="/assets/img/portfolio/portfolio-7.webp" class="glightbox preview-link" data-gallery="portfolio-gallery-motion"><i class="bi bi-eye"></i></a>
-                                          <a href="portfolio-details.html" class="details-link"><i class="bi bi-arrow-right"></i></a>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div><!-- End Portfolio Item -->
-
-                      <div class="col-lg-6 col-md-6 portfolio-item isotope-item filter-brand">
-                          <div class="portfolio-card">
-                              <div class="portfolio-image">
-                                  <img src="/assets/img/portfolio/portfolio-4.webp" class="img-fluid" alt="" loading="lazy">
-                                  <div class="portfolio-overlay">
-                                      <div class="portfolio-actions">
-                                          <a href="/assets/img/portfolio/portfolio-4.webp" class="glightbox preview-link" data-gallery="portfolio-gallery-brand"><i class="bi bi-eye"></i></a>
-                                          <a href="portfolio-details.html" class="details-link"><i class="bi bi-arrow-right"></i></a>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div><!-- End Portfolio Item -->
-
-                      <div class="col-lg-6 col-md-6 portfolio-item isotope-item filter-web">
-                          <div class="portfolio-card">
-                              <div class="portfolio-image">
-                                  <img src="/assets/img/portfolio/portfolio-2.webp" class="img-fluid" alt="" loading="lazy">
-                                  <div class="portfolio-overlay">
-                                      <div class="portfolio-actions">
-                                          <a href="/assets/img/portfolio/portfolio-2.webp" class="glightbox preview-link" data-gallery="portfolio-gallery-web"><i class="bi bi-eye"></i></a>
-                                          <a href="portfolio-details.html" class="details-link"><i class="bi bi-arrow-right"></i></a>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div><!-- End Portfolio Item -->
-
-                      <div class="col-lg-6 col-md-6 portfolio-item isotope-item filter-graphics">
-                          <div class="portfolio-card">
-                              <div class="portfolio-image">
-                                  <img src="/assets/img/portfolio/portfolio-11.webp" class="img-fluid" alt="" loading="lazy">
-                                  <div class="portfolio-overlay">
-                                      <div class="portfolio-actions">
-                                          <a href="/assets/img/portfolio/portfolio-11.webp" class="glightbox preview-link" data-gallery="portfolio-gallery-graphics"><i class="bi bi-eye"></i></a>
-                                          <a href="portfolio-details.html" class="details-link"><i class="bi bi-arrow-right"></i></a>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div><!-- End Portfolio Item -->
-
+                      @endforeach
                   </div><!-- End Portfolio Container -->
 
               </div>
@@ -305,7 +233,7 @@
 
     <div class="container">
       <div class="copyright text-center ">
-        <p>© <span>Copyright</span> <strong class="px-1 sitename">EasyFolio</strong> <span>All Rights Reserved</span></p>
+        <p>© <span>Copyright</span> <strong class="px-1 sitename">ilghar ebrahimi</strong> <span>All Rights Reserved</span></p>
       </div>
       <div class="social-links d-flex justify-content-center">
         <a href=""><i class="bi bi-twitter-x"></i></a>
@@ -318,7 +246,7 @@
         <!-- You can delete the links only if you've purchased the pro version. -->
         <!-- Licensing information: https://bootstrapmade.com/license/ -->
         <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        Created by Ilghar Ebrahimi . IRE .
       </div>
     </div>
 

@@ -15,11 +15,11 @@ class Comment extends Model
     ];
 
     public function gallery(){
-        return $this->belongsTo(Gallery::class);
+        return $this->belongsTo(Gallery::class, 'gallery_id');
     }
 
     public function category(){
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class, 'category_id');
     }
 
     public function user(){

@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 
 class AuthController extends Controller
 {
@@ -19,30 +20,36 @@ class AuthController extends Controller
     }
 
     public function sign_in(Request $request){
-
+      //check user information
         $validator = validator()->make($request->all(),[
             'name' => ['required', 'string'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8'],
         ]);
 
-        if($validator->errors()->messages()){
+      //return error
+        if($validator->fails()){
 
-            $errors = $validator->errors();
+            return redirect()->route('register')
+                ->withErrors($validator)
+                ->withInput();
 
-            return redirect()->route('register')->withErrors($errors);
-
+      //create user
         }else{
 
-            $user = User::create([
-                'name' => $request->name,
+            $user = User::Create(
+                [
                 'email' => $request->email,
+                'name' => $request->name,
                 'password' => Hash::make($request->password),
-            ]);
+                ]
+            );
 
+          //user login
             Auth::login($user);
-            dd(session()->all());
-            //return redirect()->route('front.index');
+          //end login
+
+            return redirect()->route('front.index');
         }
     }
 
@@ -51,10 +58,15 @@ class AuthController extends Controller
         $user = $request->only('email', 'password');
 
         if(!Auth::attempt($user)){
-            return response()->json(['error' => 'Unauthorized']);
+            return Redirect::route('login')->withInput()->with('error', __('auth.failed'));
 
         }else{
             return redirect()->route('front.index');
         }
+    }
+
+    public function logout(){
+        Auth::logout();
+        return redirect()->route('front.index');
     }
 }
