@@ -1,7 +1,12 @@
 @extends('back.theme.theme')
 
 @section('head')
-    <title>Category create</title>
+    <title>Gallery create</title>
+    <style>
+        .error{
+            color:darkred;
+        }
+    </style>
 @endsection
 
 @section('body')
@@ -10,31 +15,56 @@
             <div class="row">
                 <div class="col-md-12 grid-margin">
                     <div class="content-wrapper">
-                        <h3 class="card-title">ساخت دسته بندی</h3>
+                        <h3>Gallery create</h3>
                         <p class="card-description">
-                            Create new Category Record
+                            Create a new recorde of Gallery
                         </p>
-                        <form class="forms-sample" action="{{route('category.store')}}" method="post" enctype="multipart/form-data">
+                        <form class="forms-sample" action="{{route('gallery.store')}}" method="post" enctype="multipart/form-data">
                             @csrf
-                            <div class="form-group">
-                                <label for="exampleInputName1">Title</label>
-                                <input type="text" name="title" class="form-control" id="exampleInputName1" placeholder="Title">
-                            </div>
 
                             <div class="form-group">
-                                <label>File upload</label>
-                                <input type="file" name="image" class="file-upload-default">
-                                <div class="input-group col-xs-12">
-                                    <input type="text" name="image" class="form-control file-upload-info" disabled placeholder="Upload Image">
-                                    <span class="input-group-append">
-                              <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                            </span>
+                                <label for="exampleInputName1">Title</label>
+                                <input type="text" name="title" class="form-control" id="exampleInputName1" placeholder="Title" value="{{old('title')}}">
+
+                                @error('title')
+                                <p>{{$message}}</p>
+                                @enderror
+
+                            </div>
+
+                            <div class="col-md-6 grid-margin stretch-card">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <p>Category_id</p>
+                                            <select name="category_id" class="form-control form-control-sm" id="exampleFormControlSelect3">
+                                                @foreach($categories as $category)
+
+                                                        <option value="{{$category->category_id}}">{{$category->title}}</option>
+
+                                                @endforeach
+
+                                                @error('category_id')
+                                                    {{$message}}
+                                                @enderror
+                                            </select>
+
+                                            @error('gallery_id')
+                                                <p class="error">{{$message}}</p>
+                                            @enderror
+
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleTextarea1">Description</label>
-                                <textarea class="form-control" name="description" id="exampleTextarea1" rows="4"></textarea>
+                                <textarea class="form-control" name="description" id="exampleTextarea1" rows="4">{{old('description')}}</textarea>
+
+                                @error('description')
+                                <p>{{$message}}</p>
+                                @enderror
                             </div>
 
                             <button type="submit" class="btn btn-primary mr-2">Submit</button>
@@ -52,9 +82,7 @@
     <script src="/assets/vendors/typeahead.js/typeahead.bundle.min.js"></script>
     <script src="/assets/vendors/select2/select2.min.js"></script>
 
-    <!-- Custom js for this page-->
     <script src="/assets/js/file-upload.js"></script>
     <script src="/assets/js/typeahead.js"></script>
     <script src="/assets/js/select2.js"></script>
-    <!-- End custom js for this page-->
 @endsection

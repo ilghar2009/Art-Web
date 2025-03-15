@@ -36,6 +36,25 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+
+  <style>
+    @font-face {
+      font-family: "parastoo";
+      src: url("/assets/fonts/parastoo-font-v1.0.0-alpha5/web/Farsi-Digits/Parastoo-Bold-FD.woff") format("woff"),
+      url("/assets/fonts/parastoo-font-v1.0.0-alpha5/web/Farsi-Digits/Parastoo-Bold-FD.ttf") format("truetype");
+      font-weight: normal;
+      font-style: normal;
+    }
+    body{
+      font-family: 'parastoo', sans-serif !important;
+    }
+
+
+    li{
+      color:darkred;
+    }
+
+  </style>
 </head>
 
 <body dir="rtl">
@@ -59,23 +78,40 @@
                   </div>
 
                   <form class="row g-3 needs-validation" action="{{route('back.register')}}" method="post">
+
                     @csrf
+
                     <div class="col-12">
                       <label for="yourName" class="form-label">نام</label>
-                      <input type="text" name="name" class="form-control" id="yourName" required>
+                      <input type="text" name="name" class="form-control" id="yourName" value="{{old('name')}}" required>
                       <div class="invalid-feedback">لطفا نام خود را وارد کنید.</div>
+
+                      @error('name')
+                        <li>{{$message}}</li>
+                      @enderror
+
                     </div>
 
                     <div class="col-12">
                       <label for="yourEmail" class="form-label">ایمیل</label>
-                      <input type="email" name="email" class="form-control" id="yourEmail" required>
+                      <input type="email" name="email" class="form-control" id="yourEmail" value="{{old('email')}}" required>
                       <div class="invalid-feedback">لطفا آدرس ایمیل خود را وارد کنید</div>
+
+                      @error('email')
+                        <li>{{$message}}</li>
+                      @enderror
+
                     </div>
 
                     <div class="col-12">
                       <label for="yourPassword" class="form-label">رمز عبور</label>
                       <input type="password" name="password" class="form-control" id="yourPassword" required>
                       <div class="invalid-feedback">رمز عبور خود را وارد کنید</div>
+
+                      @error('password')
+                        <li>{{$message}}</li>
+                      @enderror
+
                     </div>
 
                     <div class="col-12">
@@ -83,13 +119,14 @@
                     </div>
 
                     <div class="col-12">
-                      <p class="small mb-0">در حال حاضر یک حساب کاربری دارید؟<a href="{{route('login')}}">ورود</a></p>
+                      <p class="small mb-0">در حال حاضر یک حساب کاربری دارید؟<a href="{{route('login')}}" style="text-decoration: none;">ورود</a></p>
+                      <p><a href="{{route('front.index')}}" style="color:#000; text-decoration: none;">صفحه اصلی</a></p>
                     </div>
+
                   </form>
 
                 </div>
               </div>
-
             </div>
           </div>
         </div>
@@ -97,6 +134,7 @@
       </section>
 
     </div>
+
   </main><!-- End #main -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>

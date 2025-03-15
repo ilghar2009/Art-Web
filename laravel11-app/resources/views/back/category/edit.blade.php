@@ -1,7 +1,7 @@
 @extends('back.theme.theme')
 
 @section('head')
-    <title>Category create</title>
+    <title>Category Edit</title>
 @endsection
 
 @section('body')
@@ -10,17 +10,19 @@
             <div class="row">
                 <div class="col-md-12 grid-margin">
 
-                    <h4 class="card-title">Create Category</h4>
-
-                    <p class="card-description">
-                        Create new Category Record
-                    </p>
+                    <h4 class="card-title">update Category</h4>
 
                     <form class="forms-sample" action="{{route('category.update', $category->category_id)}}" method="post" enctype="multipart/form-data">
                         @csrf
+
+{{--                        <input type="hidden" name="category_id" value="{{$category->category_id}}">--}}
+
                         <div class="form-group">
                             <label for="exampleInputName1">Title</label>
-                            <input type="text" name="title" class="form-control" id="exampleInputName1" placeholder="Title" value="{{$category->title}}">
+                            <input type="text" name="title" class="form-control" id="exampleInputName1" placeholder="Title" value="{{old('title')??$category->title}}">
+                            @error('title')
+                                <p>{{$message}}</p>
+                            @enderror
                         </div>
 
                         <div class="form-group">
@@ -36,7 +38,10 @@
 
                         <div class="form-group">
                             <label for="exampleTextarea1">Description</label>
-                            <textarea class="form-control" name="description" id="exampleTextarea1" rows="4">{{$category->description}}</textarea>
+                            <textarea class="form-control" name="description" id="exampleTextarea1" rows="4">{{old('description')??$category->description}}</textarea>
+                            @error('description')
+                            <p>{{$message}}</p>
+                            @enderror
                         </div>
 
                         <button type="submit" class="btn btn-primary mr-2">Submit</button>

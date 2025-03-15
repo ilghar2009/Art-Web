@@ -15,7 +15,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('image');
             $table->string('gallery_id');
-            $table->integer('role')->default(1); // role 0 is original
+            $table->boolean('role')->default(false); // role 0 is original
             $table->timestamps();
         });
     }

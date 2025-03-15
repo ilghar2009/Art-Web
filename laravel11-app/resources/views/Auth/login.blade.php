@@ -36,9 +36,23 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+
+  <style>
+    @font-face {
+      font-family: "parastoo";
+      src: url("/assets/fonts/parastoo-font-v1.0.0-alpha5/web/Farsi-Digits/Parastoo-Bold-FD.woff") format("woff"),
+      url("/assets/fonts/parastoo-font-v1.0.0-alpha5/web/Farsi-Digits/Parastoo-Bold-FD.ttf") format("truetype");
+      font-weight: normal;
+      font-style: normal;
+    }
+    body{
+      font-family: 'parastoo', sans-serif !important;
+    }
+
+  </style>
 </head>
 
-<body>
+<body dir="rtl">
 
   <main>
     <div class="container">
@@ -54,14 +68,14 @@
 
                   <div class="pt-4 pb-2">
                     <h5 class="card-title text-center pb-0 fs-4">به حساب کاربری خود وارد شوید</h5>
-                    <p class="text-center small">نام کاربری و رمز عبور خود را برای ورود وارد کنید</p>
+                    <p class="text-center small">نام کاربری و رمز عبور خود را وارد کنید</p>
                   </div>
 
                   <form class="row g-3 needs-validation" action="{{route('back.login')}}" method="post">
                     @csrf
                     <div class="col-12">
                       <label for="yourEmail" class="form-label">ایمیل</label>
-                      <input type="email" name="email" class="form-control" id="yourEmail" required>
+                      <input type="email" name="email" class="form-control" id="yourEmail" value="{{ old('email') }}" required>
                       <div class="invalid-feedback">لطفا آدرس ایمیل خود را وارد کنید</div>
                     </div>
 
@@ -77,7 +91,17 @@
                     </div>
 
                     <div class="col-12">
-                      <p class="small mb-0">حساب کاربری ندارید؟ <a href="{{route('register')}}">یک حساب کاربری بسازید</a></p>
+                      <p class="small mb-0">حساب کاربری ندارید؟ <a href="{{route('register')}}" style="text-decoration: none;">یک حساب کاربری بسازید</a></p>
+                      <p><a href="{{route('front.index')}}" style="color:#000; text-decoration: none;">صفحه اصلی</a></p>
+
+                      @if(!empty(session('error')))
+                        <ul>
+                          <li>
+                            <p style="color:darkred">{{session('error')}}</p>
+                          </li>
+                        </ul>
+                      @endif
+
                     </div>
                   </form>
 

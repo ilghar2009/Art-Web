@@ -1,7 +1,7 @@
 @extends('back.theme.theme')
 
 @section('head')
-    <title>Category</title>
+    <title>Galleries</title>
 @endsection
 
 @section('body')
@@ -10,9 +10,12 @@
             <div class="row">
                 <div class="col-md-12 grid-margin">
                     <div class="main-panel">
-                    <h4 class="card-title">Categories</h4>
-                    <div class="table-responsive pt-3">
+
+                        <h4 class="card-title">Galleries</h4>
+
+                        <div class="table-responsive pt-3">
                         <table class="table table-dark">
+
                             <thead>
                             <tr>
                                 <th>
@@ -22,33 +25,55 @@
                                     Title
                                 </th>
                                 <th>
-                                    Image
+                                    Category
                                 </th>
                                 <th>
                                     Description
                                 </th>
+                                <th>
+                                    Created_by
+                                </th>
+                                <th>
+                                    Image
+                                </th>
                             </tr>
                             </thead>
+
                             @php $i = 0; @endphp
-                        @foreach($categories as $category)
+                        @foreach($galleries as $gallery)
                                 <tbody>
+
                                 <tr>
                                     <td>
                                         {{++$i}}
                                     </td>
+
                                     <td>
-                                        {{$category->title}}
+                                        {{$gallery?->title}}
                                     </td>
+
                                     <td>
-                                        <img src="{{$category->image}}">
+                                        {{$gallery->category?->title}}
                                     </td>
+
                                     <td>
-                                        <p>{{$category->description}}</p>
+                                        <p>{{$gallery?->description}}</p>
                                     </td>
+
                                     <td>
-                                        <a class="btn btn-success" href="{{route('category.edit', $category->category_id)}}">Update</a>
-                                        <a class="btn btn-danger" href="{{route('category.destroy', $category->category_id)}}">Delete</a>
+                                        {{$gallery->user->name}}
                                     </td>
+
+                                    <td>
+                                        <img src="{{$gallery->images?->image}}" alt="">
+                                    </td>
+
+                                    <td>
+                                        <a class="btn btn-success" href="{{route('gallery.edit', $gallery->gallery_id)}}">Update</a>
+                                        <a class="btn btn-danger" href="{{route('gallery.destroy', $gallery->gallery_id)}}">Delete</a>
+                                        <a class="btn btn-dark" href="{{route('gallery.show.image',$gallery->gallery_id)}}">Show all Image of these gallery</a>
+                                    </td>
+
                                 </tr>
                                 </tbody>
                         @endforeach
@@ -57,7 +82,7 @@
                     <div>
                 </div>
             </div>
-        </div>
+                    </div>
                 </div>
             </div>
         </div>

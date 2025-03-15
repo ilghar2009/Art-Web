@@ -16,3 +16,11 @@
     <link rel="stylesheet" href="/assets/css/vertical-layout-light/style.css">
     <!-- endinject -->
     <link rel="shortcut icon" href="/assets/images/favicon.png" />
+
+
+{{--new--}}
+    <!-- endinject -->
+    <!-- Plugin css for gallery.create or edit page -->
+    <link rel="stylesheet" href="/assets/vendors/select2/select2.min.css">
+    <link rel="stylesheet" href="/assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
+
