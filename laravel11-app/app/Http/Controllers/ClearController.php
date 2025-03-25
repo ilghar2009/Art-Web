@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Gallery;
 use App\Models\Image;
+use App\Models\Like;
 use Illuminate\Http\Request;
 
 class ClearController extends Controller
@@ -38,6 +39,16 @@ class ClearController extends Controller
 
                 if(!$check) {
                     $comment->delete();
+                }
+            }
+
+        $likes = Like::all();
+
+            foreach($likes as $like){
+                $check = Gallery::where('gallery_id', $like->gallery_id)->first();
+
+                if(!$check) {
+                    $like->delete();
                 }
             }
 
