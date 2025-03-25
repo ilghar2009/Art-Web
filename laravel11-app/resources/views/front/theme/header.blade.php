@@ -24,7 +24,7 @@ use \Illuminate\Support\Facades\Auth;
                 @endphp
 
                 @if(!$user = Auth::user())
-                    <li><a href="{{route('register')}}">ورود/ثبت نام</a></li>
+                    <li><a href="{{route('register')}}">ورود/ ثبت نام</a></li>
                 @else
                     <li>
                         <a href="{{route($route)}}">

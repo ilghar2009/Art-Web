@@ -11,6 +11,8 @@ class Gallery extends Model
     protected $keyType = 'string';
     public $incrementing = false;
 
+    protected $withCount = ['likes'];
+
     protected $fillable = [
         'gallery_id',
         'title',

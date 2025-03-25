@@ -44,13 +44,11 @@
 
                                                 @endforeach
 
-                                                @error('category_id')
-                                                    {{$message}}
-                                                @enderror
+
                                             </select>
 
-                                            @error('gallery_id')
-                                                <p class="error">{{$message}}</p>
+                                            @error('category_id')
+                                                {{$message}}
                                             @enderror
 
                                         </div>

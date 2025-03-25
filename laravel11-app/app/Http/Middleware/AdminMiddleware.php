@@ -18,7 +18,7 @@ class AdminMiddleware
     {
         if(!Auth::user()->role){
             return redirect()->route('login')->with('error', 'برای وارد شدن به این بخش باید ادمین باشید.');
-        }else
+        }
             return $next($request);
     }
 }

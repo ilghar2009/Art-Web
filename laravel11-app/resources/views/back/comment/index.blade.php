@@ -1,7 +1,7 @@
 @extends('back.theme.theme')
 
 @section('head')
-    <title>Galleries</title>
+    <title>comments</title>
 @endsection
 
 @section('body')
@@ -11,36 +11,46 @@
                 <div class="col-md-12 grid-margin">
                     <div class="main-panel">
 
-                        <h4 class="card-title">Galleries</h4>
+                        <h4 class="card-title">Comments</h4>
 
 
                         <table class="table table-dark">
 
                             <thead>
                             <tr>
+
                                 <th>
                                     #
                                 </th>
-                                <th>
-                                    Title
-                                </th>
-                                <th>
-                                    Category
-                                </th>
-                                <th>
-                                    Description
-                                </th>
+
                                 <th>
                                     Created_by
                                 </th>
+
                                 <th>
-                                    Image
+                                    Text
                                 </th>
+
+                                <th>
+                                    Type
+                                </th>
+
+                                <th>
+                                    Gallery
+                                </th>
+
+                                <th>
+                                    Category
+                                </th>
+
+
+
+
                             </tr>
                             </thead>
 
                             @php $i = 0; @endphp
-                        @foreach($galleries as $gallery)
+                        @foreach($comments as $comment)
                                 <tbody>
 
                                 <tr>
@@ -49,29 +59,28 @@
                                     </td>
 
                                     <td>
-                                        {{$gallery?->title}}
+                                        {{$comment?->created_by}}
                                     </td>
 
                                     <td>
-                                        {{$gallery->category?->title}}
+                                        {{$comment?->text}}
                                     </td>
 
                                     <td>
-                                        <p>{{$gallery?->description}}</p>
+                                        <p>{{$comment?->type}}</p>
                                     </td>
 
                                     <td>
-                                        {{$gallery->user->name}}
+                                        {{$comment->gallery?->title}}
                                     </td>
 
                                     <td>
-                                        <img src="{{$gallery->images?->image}}" alt="">
+                                        {{$comment->category?->title}}
                                     </td>
 
                                     <td>
-                                        <a class="btn btn-success" href="{{route('gallery.edit', $gallery->gallery_id)}}">Update</a>
-                                        <a class="btn btn-danger" href="{{route('gallery.destroy', $gallery->gallery_id)}}">Delete</a>
-                                        <a class="btn btn-dark" href="{{route('show.gallery',$gallery->gallery_id)}}">Show all Image of these gallery</a>
+                                        <a class="btn btn-success" href="{{route('comment.accept',$comment->id)}}">Accept</a>
+                                        <a class="btn btn-danger" href="{{route('comment.destroy', $comment->id)}}">Delete</a>
                                     </td>
 
                                 </tr>
@@ -82,9 +91,8 @@
 
                 </div>
             </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
+</div>
+
 @endsection
