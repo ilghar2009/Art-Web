@@ -36,8 +36,9 @@ class Gallery extends Model
         return $this->hasOne(Image::class, 'gallery_id')->where('role', true);
     }
 
-    public function comments(){
-        return $this->hasMany(Comment::class, 'gallery_id');
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
     }
 
     public function likes(){

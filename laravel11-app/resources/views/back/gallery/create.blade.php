@@ -6,6 +6,11 @@
         .error{
             color:darkred;
         }
+        input{
+            font-size: 18px;
+            font-family: 'nazanin', sans-serif !important;
+            font-weight: bold;
+        }
     </style>
 @endsection
 
@@ -44,11 +49,13 @@
 
                                                 @endforeach
 
-
+                                                @error('category_id')
+                                                    {{$message}}
+                                                @enderror
                                             </select>
 
-                                            @error('category_id')
-                                                {{$message}}
+                                            @error('gallery_id')
+                                                <p class="error">{{$message}}</p>
                                             @enderror
 
                                         </div>

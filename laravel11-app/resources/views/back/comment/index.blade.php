@@ -36,11 +36,11 @@
                                 </th>
 
                                 <th>
-                                    Gallery
+                                    CommentAble title
                                 </th>
 
                                 <th>
-                                    Category
+                                    Status
                                 </th>
 
 
@@ -59,7 +59,7 @@
                                     </td>
 
                                     <td>
-                                        {{$comment?->created_by}}
+                                        {{$comment?->user->name}}
                                     </td>
 
                                     <td>
@@ -67,19 +67,23 @@
                                     </td>
 
                                     <td>
-                                        <p>{{$comment?->type}}</p>
+                                        <p>{{$comment?->commentable_type=='App\Models\Gallery'? 'gallery': 'category'}}</p>
                                     </td>
 
                                     <td>
-                                        {{$comment->gallery?->title}}
+                                        <a href="{{route($comment?->commentable_type=='App\Models\Gallery'? 'show.gallery' : 'show.category', $comment->commentable_id)}}" style="color:#fff">
+                                            {{$comment->commentable->title}}
+                                        </a>
                                     </td>
 
                                     <td>
-                                        {{$comment->category?->title}}
+                                        {{$comment->status? 'true': 'false'}}
                                     </td>
 
                                     <td>
-                                        <a class="btn btn-success" href="{{route('comment.accept',$comment->id)}}">Accept</a>
+                                        @if($comment->status == false)
+                                            <a class="btn btn-success" href="{{route('comment.accept',$comment->id)}}">Accept</a>
+                                        @endif
                                         <a class="btn btn-danger" href="{{route('comment.destroy', $comment->id)}}">Delete</a>
                                     </td>
 

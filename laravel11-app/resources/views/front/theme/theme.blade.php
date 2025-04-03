@@ -23,6 +23,19 @@ use \Illuminate\Support\Facades\Auth;
             font-family: 'nazanin', sans-serif !important;
             font-weight: bold; /* استفاده از نسخه بولد فونت */
         }
+
+        *{
+            text-decoration: none;
+        }
+
+        a{
+            text-decoration:none;
+        }
+
+        p{
+            font-family: 'nazanin', sans-serif !important;
+            font-weight: bold; /* استفاده از نسخه بولد فونت */
+        }
     </style>
 </head>
 

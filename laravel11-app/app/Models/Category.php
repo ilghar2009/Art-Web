@@ -30,8 +30,10 @@ class Category extends Model
         return $this->hasMany(Gallery::class);
     }
 
-    public function comments(){
-        return $this->hasMany(Comment::class);
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
     }
+
 
 }

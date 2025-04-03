@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('comment', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->longText('text');
             $table->string('created_by');
-            $table->string('gallery_id')->nullable();
-            $table->string('category_id')->nullable();
+            $table->string('commentable_id')->nullable();
+            $table->string('commentable_type')->nullable();
             $table->string('reply_id')->nullable();
-            $table->boolean('active')->default(false);
-            $table->string('type');
+            $table->boolean('status')->default(false);
             $table->timestamps();
         });
     }

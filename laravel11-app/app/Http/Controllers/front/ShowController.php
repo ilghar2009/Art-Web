@@ -20,13 +20,33 @@ class ShowController extends Controller
 
     public function category_show(Category $category){
 
+        $category->load(['comments']);
+
+        $publicComments = $category->comments()->orderBy('status', True)->map(fn($comment) => [
+            'id' => $comment->id,
+            'text' => $comment->text,
+            'user_id' => $comment->created_by,
+            'name' => $comment->user->name,
+            'reply' => Comment::where('id', $comment->reply_id)->get()->map(fn($comment) => [
+                'id' => $comment->id,
+                'name' => $comment->user->name,
+            ])
+        ]);
+
+        return view('front.show.category_show', [
+           'id' => $category->category_id,
+           'title' => $category->title,
+           'image' => $category->image,
+           'description' => $category->description,
+           'comments' => $publicComments,
+        ]);
     }
 
     public function gallery_show(Gallery $gallery){
 
         $gallery->load(['comments', 'category', 'user']);
 
-        $publicComments = $gallery?->comments->where('accept', true)->map(fn($comment) => [
+        $publicComments = $gallery?->comments->where('status', true)->map(fn($comment) => [
             'id' => $comment->id,
             'text' => $comment->text,
             'user_id' => $comment->created_by,
@@ -56,7 +76,7 @@ class ShowController extends Controller
 
             'images' => $image,
 
-            'comment' => $publicComments,
+            'comments' => $publicComments,
 
             'likes_count' => $gallery?->likes_count,
 

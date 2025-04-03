@@ -6,6 +6,11 @@
         p{
             color:darkred;
         }
+        input{
+            font-size: 18px;
+            font-family: 'nazanin', sans-serif !important;
+            font-weight: bold;
+        }
     </style>
 @endsection
 

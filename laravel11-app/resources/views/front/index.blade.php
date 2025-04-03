@@ -1,99 +1,61 @@
 @extends('front.theme.theme')
 
 @section('head')
+
     <title>art_web</title>
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
 
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #000; /* پس‌زمینه سیاه برای زیبایی */
-        }
-
-        .slider-container {
+        #galleryCarousel .carousel-inner {
             position: relative;
             width: 100%;
-            height: 100vh; /* ارتفاع کامل صفحه */
+            height: 100vh; /* اندازه اسلایدر برابر ارتفاع صفحه */
             overflow: hidden;
         }
 
-        .slider {
-            display: flex;
-            transition: transform 0.5s ease;
+        #galleryCarousel .carousel-item img {
             width: 100%;
             height: 100%;
+            object-fit: cover; /* تنظیم تصویر برای پوشش کامل اسلایدر */
         }
 
-        .slider img {
-            display: none; /* مخفی کردن عکس‌ها */
+        body{
+            font-size:18px;
         }
-
-        .slider .slide {
-            width: 100%;
-            height: 100%;
-            background-position: center;
-            background-size: cover;
-        }
-
-        .btn-prev, .btn-next {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            padding: 10px;
-            cursor: pointer;
-            border: none;
-            font-size: 20px;
-            z-index: 10;
-        }
-
-        .btn-prev {
-            left: 10px;
-        }
-
-        .btn-next {
-            right: 10px;
-        }
-
-        /* تصاویر داخل گالری */
-        .portfolio-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain; /* تصاویر را بدون برش درون باکس‌ها قرار می‌دهد */
-        }
-
-        /* تصاویر داخل دسته‌بندی‌ها */
-        .portfolio-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain; /* نمایش کامل تصویر بدون برش */
-        }
-
 
     </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 @endsection
 
 @section('body')
 
     <main class="main">
 
-        <div class="slider-container">
+        <div id="galleryCarousel" class="carousel slide" data-bs-ride="carousel">
 
-            @foreach($galleries as $gallery)
-                <div class="slider">
-                    <div class="slide" style="background-image: url('{{$gallery->images->image??"/assets/img/portfolio/portfolio-1.webp"}}');"></div>
-                </div>
-            @endforeach
+            <div class="carousel-inner">
+                @php $i = 0; @endphp
+                @foreach($galleries as $gallery)
+                    <div class="carousel-item @if($i === 0) active @endif">
+                        <a href="{{ route('show.gallery', $gallery->gallery_id) }}">
+                            <img src="{{ $gallery->images?->image }}" class="d-block w-100" alt="Image {{ $gallery->description}}">
+                        </a>
+                    </div>
+                    @php $i++ @endphp
+                @endforeach
+            </div>
 
-            <button class="btn-prev">❮</button>
-            <button class="btn-next">❯</button>
+            <button class="carousel-control-prev" type="button" data-bs-target="#galleryCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">قبلی</span>
+            </button>
+
+            <button class="carousel-control-next" type="button" data-bs-target="#galleryCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">بعدی</span>
+            </button>
+
         </div>
-
 
 
         <!-- category -->
@@ -125,10 +87,10 @@
                                 <div class="portfolio-card">
 
                                     <div class="portfolio-image">
-                                        <img src="{{$category->image}}" class="img-fluid" alt="" loading="lazy">
+                                        <img src="{{$category?->image}}" class="img-fluid" alt="" loading="lazy">
                                         <div class="portfolio-overlay">
                                             <div class="portfolio-actions">
-                                                <a href="{{$category->image}}" class="glightbox preview-link"
+                                                <a href="{{$category?->image}}" class="glightbox preview-link"
                                                    data-gallery="portfolio-gallery-web"><i class="bi bi-eye"></i></a>
                                                 <a href="{{route('show.category', $category->category_id)}}"
                                                    class="details-link"><i class="bi bi-arrow-right"></i></a>
@@ -188,7 +150,7 @@
                             <div class="col-lg-6 col-md-6 portfolio-item isotope-item filter-web">
                                 <div class="portfolio-card">
                                     <div class="portfolio-image">
-                                        <img src="{{$gallery->images->image}}" class="img-fluid"
+                                        <img src="{{$gallery->images?->image}}" class="img-fluid"
                                              alt="{{$gallery->title}}" loading="lazy">
 
                                         <div class="portfolio-overlay">
@@ -204,6 +166,20 @@
 
                                         </div>
                                     </div>
+
+                                    @if(session('error') !== null)
+                                        @php
+                                            $error = session('error');
+                                        @endphp
+
+                                        @if($error['gallery_id'] == $gallery->gallery_id)
+                                            <div class="portfolio-content">
+                                                <p style="color:darkred; font-family:bold,serif;">{{$error['error']}}</p>
+                                            </div>
+                                        @endif
+
+                                    @endif
+
                                 </div>
                             </div><!-- End Portfolio Item -->
                         @endforeach
@@ -347,40 +323,6 @@
                 class="bi bi-arrow-up-short"></i></a>
 
     @section('script')
-        <script>
-            let currentIndex = 0;
-            const slides = document.querySelectorAll('.slider img');
-            const totalSlides = slides.length;
-            const slider = document.querySelector('.slider');
-            const btnPrev = document.querySelector('.btn-prev');
-            const btnNext = document.querySelector('.btn-next');
-
-            function updateSliderPosition() {
-                slider.style.transform = `translateX(-${currentIndex * 100}%)`;
-            }
-
-            // جابه‌جایی دستی با دکمه‌ها
-            btnPrev.addEventListener('click', () => {
-                currentIndex = (currentIndex === 0) ? totalSlides - 1 : currentIndex - 1;
-                updateSliderPosition();
-            });
-
-            btnNext.addEventListener('click', () => {
-                currentIndex = (currentIndex === totalSlides - 1) ? 0 : currentIndex + 1;
-                updateSliderPosition();
-            });
-
-            // اسلاید خودکار
-            function autoSlide() {
-                setInterval(() => {
-                    currentIndex = (currentIndex === totalSlides - 1) ? 0 : currentIndex + 1;
-                    updateSliderPosition();
-                }, 3000); // هر 3 ثانیه یکبار عکس‌ها عوض می‌شوند
-            }
-
-            // فعال کردن اسلاید خودکار
-            autoSlide();
-
-        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     @endsection
 @endsection

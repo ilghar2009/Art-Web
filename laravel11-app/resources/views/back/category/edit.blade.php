@@ -2,6 +2,13 @@
 
 @section('head')
     <title>Category Edit</title>
+    <style>
+        input{
+            font-size: 18px;
+            font-family: 'nazanin', sans-serif !important;
+            font-weight: bold;
+        }
+    </style>
 @endsection
 
 @section('body')

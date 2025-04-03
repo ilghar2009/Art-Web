@@ -11,7 +11,7 @@
                 font-family: "nazanin";
                 src: url("/assets/fonts/BNazanin.ttf") format("truetype"),
                 url("/assets/fonts/BNaznnBd.ttf") format("truetype");
-                font-weight: normal;
+                font-weight: bold;
                 font-style: normal;
             }
             body{
