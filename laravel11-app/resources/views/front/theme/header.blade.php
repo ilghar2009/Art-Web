@@ -20,7 +20,7 @@ use \Illuminate\Support\Facades\Auth;
                     if(Auth::user()?->role == true)
                         $route = 'back.index';
                     else
-                        $route = 'front.index';
+                        $route = 'front.dashboard';
                 @endphp
 
                 @if(!$user = Auth::user())

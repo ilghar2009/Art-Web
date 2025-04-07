@@ -18,19 +18,25 @@ class ShowController extends Controller
         return view('front.index',compact('categories', 'galleries'));
     }
 
+    public function dashboard(){
+        return view('front.dashboard.index');
+    }
+
     public function category_show(Category $category){
 
         $category->load(['comments']);
 
-        $publicComments = $category->comments()->orderBy('status', True)->map(fn($comment) => [
+        $publicComments = $category?->comments->where('status', True)->map(fn($comment) => [
             'id' => $comment->id,
             'text' => $comment->text,
             'user_id' => $comment->created_by,
             'name' => $comment->user->name,
-            'reply' => Comment::where('id', $comment->reply_id)->get()->map(fn($comment) => [
-                'id' => $comment->id,
-                'name' => $comment->user->name,
-            ])
+
+            'reply' => $comment->parents ? [
+                'reply_id' => $comment->id,
+                'reply_name' => $comment->user?->name,
+            ]: null,
+
         ]);
 
         return view('front.show.category_show', [
@@ -51,10 +57,12 @@ class ShowController extends Controller
             'text' => $comment->text,
             'user_id' => $comment->created_by,
             'name' => $comment->user->name,
-            'reply' => Comment::where('id', $comment->reply_id)->get()->map(fn($comment) => [
-                'id' => $comment->id,
-                'name' => $comment->user->name,
-            ]),
+
+            'reply' => $comment->parent ?[
+                'reply_id' => $comment->parent->id,
+                'reply_name' => $comment->parent->user->name,
+            ]: null,
+
         ]);
 
         $image = Image::where('gallery_id', $gallery->gallery_id)->get()->map(fn($image) => [

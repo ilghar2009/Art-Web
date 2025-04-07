@@ -43,8 +43,9 @@
                                     Status
                                 </th>
 
-
-
+                                <th>
+                                    reply to
+                                </th>
 
                             </tr>
                             </thead>
@@ -59,7 +60,7 @@
                                     </td>
 
                                     <td>
-                                        {{$comment?->user->name}}
+                                        {{$comment?->user?->name}}
                                     </td>
 
                                     <td>
@@ -72,12 +73,18 @@
 
                                     <td>
                                         <a href="{{route($comment?->commentable_type=='App\Models\Gallery'? 'show.gallery' : 'show.category', $comment->commentable_id)}}" style="color:#fff">
-                                            {{$comment->commentable->title}}
+                                            {{$comment->commentable?->title}}
                                         </a>
                                     </td>
 
                                     <td>
                                         {{$comment->status? 'true': 'false'}}
+                                    </td>
+
+                                    <td>
+                                        @if($comment->reply_id)
+                                            <a>{{$comment?->reply_id}}</a>
+                                        @endif
                                     </td>
 
                                     <td>

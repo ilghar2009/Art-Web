@@ -26,6 +26,11 @@ Route::middleware(['Auth'])->group(function(){
     //comment user
     Route::post('/comment/create/', [CommentController::class, 'store'])->name('comment.store');
 
+    //dashboard
+        Route::get('/front/dashboard/', [ShowController::class, 'dashboard'])->name('front.dashboard');
+        Route::get('/front/dashboard/reply/', [ShowController::class, 'reply'])->name('front.reply');
+        Route::post('/front/dashboard/update/user/', [AuthController::class, 'update'])->name('update.user');
+
     //backend
     Route::middleware(['Admin'])->group(function() {
         Route::get('/back/dashboard/', [BackshowController::class, 'index'])->name('back.index');

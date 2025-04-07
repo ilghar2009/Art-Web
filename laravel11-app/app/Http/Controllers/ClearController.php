@@ -32,7 +32,7 @@ class ClearController extends Controller
             foreach($comments as $comment){
                 $type = $comment->type;
 
-                if($type == 'gallery')
+                if($type == 'Gallery::class')
                     $check = Gallery::where('gallery_id', $comment->gallery_id)->first();
                 else
                     $check = Category::where('category_id', $comment->category_id)->first();

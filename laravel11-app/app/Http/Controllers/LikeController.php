@@ -34,6 +34,9 @@ class LikeController extends Controller
 
             return Redirect::back()->with('error', $errors);
         }
-        return redirect()->route('front.index');
+
+            $errors = ['error'=> 'شما این گالری را پسندیده اید.', 'gallery_id' => $id];
+
+        return Redirect::back()->with('error', $errors);
     }
 }

@@ -174,7 +174,7 @@
 
                                         @if($error['gallery_id'] == $gallery->gallery_id)
                                             <div class="portfolio-content">
-                                                <p style="color:darkred; font-family:bold,serif;">{{$error['error']}}</p>
+                                                <p style=" font-size: 15px; font-family:bold,serif;">{{$error['error']}}</p>
                                             </div>
                                         @endif
 
