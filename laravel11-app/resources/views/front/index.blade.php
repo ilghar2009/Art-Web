@@ -23,6 +23,21 @@
             font-size:18px;
         }
 
+        @media (max-width: 1024px) {
+            #galleryCarousel{
+                height:70vh;
+            }
+        }
+
+        @media (max-width: 767px) {
+            #galleryCarousel{
+                height:50vh;
+            }
+        }
+
+
+
+
     </style>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 @endsection
@@ -30,6 +45,8 @@
 @section('body')
 
     <main class="main">
+
+    @if($galleries)
 
         <div id="galleryCarousel" class="carousel slide" data-bs-ride="carousel">
 
@@ -56,6 +73,8 @@
             </button>
 
         </div>
+
+    @endif
 
 
         <!-- category -->
@@ -125,8 +144,7 @@
                 <h2>گالری</h2>
                 <div class="title-shape">
                     <svg viewBox="0 0 200 20" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M 0,10 C 40,0 60,20 100,10 C 140,0 160,20 200,10" fill="none" stroke="currentColor"
-                              stroke-width="2"></path>
+                        <path d="M 0,10 C 40,0 60,20 100,10 C 140,0 160,20 200,10" fill="none" stroke="currentColor" stroke-width="2"></path>
                     </svg>
                 </div>
             </div><!-- End Section Title -->
@@ -137,9 +155,9 @@
 
                     <div class="portfolio-filters-container" data-aos="fade-up" data-aos-delay="200">
                         <ul class="portfolio-filters isotope-filters">
-                            <li data-filter="*" class="filter-active"><a>همه ی دسته بندی ها</a></li>
+                            <li data-filter="*" @if(!isset($active)) class="filter-active" @endif><a style="color:#000; text-decoration: none;" href="{{route('front.index')}}">همه ی دسته بندی ها</a></li>
                             @foreach($categories as $category)
-                                <li data-filter=".filter-web"><a>{{$category?->title}}</a></li>
+                                <li data-filter=".filter-web" @if(isset($active) and $active == $category->category_id) class="filter-active" @endif value="{{$category->category_id}}"><a style="color:#000" href="{{route('search.gallery', $category->category_id)}}">{{$category?->title}}</a></li>
                             @endforeach
                         </ul>
                     </div>
@@ -157,7 +175,10 @@
 
                                             <div class="portfolio-actions">
 
-                                                <a href="{{route('like',$gallery->gallery_id)}}" class="bi bi-heart">{{$gallery->likes_count}}</a>
+                                                @if(session('error') != null)
+                                                    @php $error = session('error') @endphp
+                                                @endif
+                                                <a href="{{route('like',$gallery->gallery_id)}}" class="@if(session('error') != null and $error['gallery_id'] == $gallery->gallery_id and $error['error'] == 'شما این گالری را پسندیده اید.') {{'bi bi-heart-fill'}} @else {{'bi bi-heart'}} @endif">{{$gallery->likes_count}}</a>
 
                                                 <a href="{{route('show.gallery',$gallery->gallery_id)}}" class="details-link">
                                                     <i class="bi bi-arrow-right"></i>

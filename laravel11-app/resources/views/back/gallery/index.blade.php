@@ -65,7 +65,7 @@
                                     </td>
 
                                     <td>
-                                        <img src="{{$gallery->images?->image}}" alt="">
+                                        <img src="{{$gallery->images?->image}}" alt="{{$gallery->title}}" style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover;">
                                     </td>
 
                                     <td>

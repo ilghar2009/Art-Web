@@ -10,6 +10,7 @@ use App\Http\Controllers\front\ShowController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\UserController;
 use App\Models\Comment;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Support\Facades\Route;
@@ -23,8 +24,12 @@ Route::group([], function(){
 //all route need to login
 Route::middleware(['Auth'])->group(function(){
 
+    //user update
+        Route::post('/user/update/{user}', [UserController::class, 'update'])->name('user.update');
+
     //comment user
     Route::post('/comment/create/', [CommentController::class, 'store'])->name('comment.store');
+    Route::get('/dashboard/comment/show/',[CommentController::class, 'show'])->name('comment.show');
 
     //dashboard
         Route::get('/front/dashboard/', [ShowController::class, 'dashboard'])->name('front.dashboard');
@@ -90,4 +95,8 @@ Route::middleware(['Auth'])->group(function(){
     Route::group([], function() {
         Route::get('/show/gallery/{gallery}', [ShowController::class, 'gallery_show'])->name('show.gallery');
         Route::get('/show/category/{category}', [ShowController::class, 'category_show'])->name('show.category');
+
+        //search
+            Route::get('/show/search/gallery/{id?}', [ShowController::class, 'search_gallery'])->name('search.gallery');
+            Route::get('/show/search/category/', [ShowController::class, 'search_category'])->name('search.category');
     });

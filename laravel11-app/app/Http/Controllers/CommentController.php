@@ -70,4 +70,12 @@ class CommentController extends Controller
 
         return redirect()->route('comment.index');
     }
+
+    public function show(){
+        $user = Auth::user();
+
+        $comments = Comment::where('reply_id', $user->user_id)->where('created_by', $user->user_id)->get();
+
+        return view('front.dashboard', compact('comments'));
+    }
 }

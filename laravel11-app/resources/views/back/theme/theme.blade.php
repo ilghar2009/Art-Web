@@ -4,22 +4,25 @@
     <head>
         @include('back.theme.head')
 
+
+        <link rel="stylesheet" href="/assets/fonts/Vazirmatn-font-face">
+        <link rel="stylesheet" href="/assets/fonts/Vazirmatn-Variable-font-face.css">
+
         @yield('head')
 
         <style>
             @font-face {
-                font-family: "nazanin";
-                src: url("/assets/fonts/BNazanin.ttf") format("truetype"),
-                url("/assets/fonts/BNaznnBd.ttf") format("truetype");
-                font-weight: bold;
+                font-family: 'Byekan';
+                src: url('/assets/fonts/384.Font.Farsi/BYekan.ttf') format('truetype');
+                font-weight: normal;
                 font-style: normal;
             }
+
             body{
-                font-family: 'nazanin', sans-serif !important;
+                font-family: 'Vazir', sans-serif;
             }
             h1, h2, h3, h4, h5, h6 {
-                font-family: 'nazanin', sans-serif !important;
-                font-weight: bold; /* استفاده از نسخه بولد فونت */
+                font-family: 'Byekan', sans-serif;
             }
         </style>
     </head>

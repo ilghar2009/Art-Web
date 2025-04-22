@@ -64,7 +64,6 @@
             object-fit: contain;
             display: block;
             margin-top: 20px;
-            border-radius: 10px;
             cursor: pointer;
             transition: transform 0.3s ease;
             margin-bottom: 20px;
@@ -90,21 +89,24 @@
         button:hover {
             background-color: #555;
         }
+        /* فوتر زیبا */
         .footer {
-            text-align: center;
-            padding: 20px;
-            font-size: 16px;
-            color: #333;
-            background-color: #333;
-            color: white;
-        }
-        .footer a {
+            background-color: #343a40;
             color: #fff;
-            text-decoration: none;
-            font-weight: bold;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 30px;
+            font-size: 16px;
+            border-radius: 8px;
         }
+
+        .footer a {
+            color: #00d4ff;
+            text-decoration: none;
+        }
+
         .footer a:hover {
-            text-decoration: underline;
+            color: #ffdd57;
         }
 
         /* Media Queries for responsive design */
@@ -187,15 +189,27 @@
         .card p {
             color: #ddd;
         }
-        #comment-text::placeholder{
-            color:#fff;
-        }
         #comment-text{
+            color:#fff;
+            background-color:#2a2a3b;
+            outline:none;
             border:none;
-            outline: none;
+            margin-bottom:10px;
         }
         #comment-text:hover{
             border:1px solid #fff;
+        }
+        #comment-text::placeholder{
+            color:#fff
+        }
+
+        .description-section {
+            max-width: 750px;
+            margin: auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            margin-top: 30px;
         }
 
     </style>
@@ -214,8 +228,12 @@
     </div>
 </div>
 <div class="container">
-    <img src="{{$image}}" alt="تصویر دسته‌بندی" class="category-image" onclick="openImageModal()">
-    <p class="description">{{$description}}</p>
+    <img style="border-radius:10px" src="{{$image}}" alt="تصویر دسته‌بندی" class="category-image" onclick="openImageModal()">
+
+    <div class="description-section mt-4">
+        <h4>{{$title}}</h4>
+        <p>{{$description}}</p>
+    </div>
 
     {{--    comments  --}}
 

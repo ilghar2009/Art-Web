@@ -1,7 +1,7 @@
 <?php
 use \Illuminate\Support\Facades\Auth;
 ?>
-<header id="header" class="header d-flex align-items-center sticky-top">
+<header id="header" class="header d-flex align-items-center sticky-top" style="background-color:transparent">
     <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
         <a href="{{route('front.index')}}" class="logo d-flex align-items-center me-auto me-xl-0">
@@ -12,8 +12,15 @@ use \Illuminate\Support\Facades\Auth;
 
         <nav id="navmenu" class="navmenu">
             <ul>
-                <li><a href="#hero" class="active">خانه</a></li>
-                <li><a href="#category" style="">دسته بندی</a></li>
+
+                <li class="dropdown"><a href="#category"><span>دسته بندی</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                    <ul>
+                        @foreach($categories as $category)
+                            <li><a href="{{route('show.category', $category?->category_id)}}">{{$category?->title}}</a></li>
+                        @endforeach
+                    </ul>
+                </li>
+
                 <li><a href="#about">درباره ی ما</a></li>
                 <li><a href="#gallery">گالری</a></li>
                 @php
@@ -26,10 +33,16 @@ use \Illuminate\Support\Facades\Auth;
                 @if(!$user = Auth::user())
                     <li><a href="{{route('register')}}">ورود/ ثبت نام</a></li>
                 @else
-                    <li>
-                        <a href="{{route($route)}}">
-                            سلام {{$user->name}}
-                        </a>
+                    <li class="dropdown"><a href="#"><span> سلام {{$user->name}}</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                        <ul>
+
+                            @if($user->role == true)
+                                <li><a href="{{route('back.index')}}">صفحه ادمین</a></li>
+                            @endif
+
+                            <li><a href="{{route('front.dashboard')}}">داشبورد کاربران</a></li>
+                            <li><a href="{{route('logout')}}">خروج از اکانت</a></li>
+                        </ul>
                     </li>
                 @endif
 

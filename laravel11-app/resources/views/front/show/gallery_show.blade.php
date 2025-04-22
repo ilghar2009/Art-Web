@@ -13,7 +13,7 @@
 
     <style>
         .header {
-            background: linear-gradient(135deg, #6c7ae0, #4a56e2);
+            background: linear-gradient(#0a0f14, #000000, #00000b);
             color: white;
             text-align: center;
             padding: 20px 0;
@@ -32,24 +32,7 @@
             transition: 1s;
         }
 
-        .gallery-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 15px;
-            justify-content: center;
-            padding: 20px;
-        }
 
-        .gallery-item {
-            position: relative;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
-            background: white;
-            padding: 10px;
-            transition: transform 0.2s ease-in-out;
-        }
 
         .gallery-item img {
             width: 100%;
@@ -224,19 +207,10 @@
             color: #ffdd57;
         }
 
-        .gallery-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* برای نمایش تعداد مناسب ستون‌ها */
-            gap: 15px;
-            justify-content: center;
-            padding: 20px;
-        }
+
 
         /* تنظیمات تصاویر در اندازه بزرگتر */
         @media (min-width: 1025px) {
-            .gallery-container {
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* تعداد ستون‌ها را برای صفحات بزرگتر افزایش می‌دهیم */
-            }
             .gallery-item img {
                 width: 100%;
                 max-height: 400px; /* حداکثر ارتفاع تصاویر */
@@ -257,14 +231,96 @@
             color:#fff
         }
 
-        .box:hover {
-            box-shadow:5px 5px 5px #000000ba;
+        /* استایل گالری تصاویر */
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* نمایش در چندین ستون */
+            gap: 20px; /* فاصله بین تصاویر */
+            justify-items: center; /* ترازبندی تصاویر */
+            padding: 20px;
         }
 
-        .box{
-            margin:auto;
-            margin-bottom:5px;
+        /* استایل هر کارت تصویر */
+        .image-card {
+            position: relative;
+            width: 100%;
+            max-width: 300px;
+            border-radius: 15px; /* گوشه‌های گرد */
+            overflow: hidden; /* جلوگیری از بیرون زدن محتوا */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* سایه زیبا */
+            background-color: #fff; /* پس‌زمینه سفید */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+
+        /* استایل تصویر */
+        .responsive-image {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* دکمه‌ها */
+        .button-container {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.5); /* پس‌زمینه نیمه‌شفاف */
+            border-radius: 0 0 15px 15px;
+        }
+
+        button {
+            background-color: #4CAF50; /* رنگ دکمه‌ها */
+            border: none;
+            color: white;
+            padding: 10px 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        /* رنگ دکمه‌ها هنگام hover */
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* دکمه حذف */
+        .delete-btn {
+            background-color: #f44336; /* رنگ قرمز برای حذف */
+        }
+
+        /* تغییر رنگ دکمه حذف هنگام hover */
+        .delete-btn:hover {
+            background-color: #e53935;
+        }
+
+        /* انیمیشن برای بزرگ شدن تصویر هنگام hover */
+        .image-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* سایه تیره‌تر */
+        }
+
+        /* Image preview in modal */
+        .modal-body img {
+            width: 100%;
+            height: auto;
+            max-height: 90vh;  /* Ensure the image doesn't overflow vertically */
+        }
+
+        /* Optional: add styles for prev/next buttons */
+        .modal-footer button {
+            font-size: 18px;
+        }
+
+
 
     </style>
 </head>
@@ -274,7 +330,7 @@
     <nav>
         <a href="{{route('front.index')}}">خانه</a>
         @if($user = Auth::user())
-            <a href="@if($user->role){{route('back.index')}}@endif">{{$user->name}}</a>
+            <a href="@if($user->role == true){{route('back.index')}} @else {{route('front.dashboard')}}@endif">{{$user->name}}</a>
         @else
             <a href="{{route('register')}}">ورود / ثبت نام</a>
         @endif
@@ -284,57 +340,67 @@
 <div class="container mt-4">
 
     <!-- گالری -->
-    <div class="gallery-container mt-4">
-        @foreach($images as $image)
-            <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="openImageModal('{{$image['url']}}')">
-                <img src="{{$image['url']}}" alt="Gallery Image">
-                @if(Auth::user()?->role == true)
-                    <a class="box"  style="padding:10px; text-decoration:none; color:#fff; background-color:red; border-radius:15px;"
-                        href="{{route('gallery.destroy.image', $image['id'])}}"
-                    >
-                        حذف
-                    </a>
 
-                    <a class="box" style="padding:10px; text-decoration:none; color:#fff; background-color:#28ed28; border-radius:15px;"
-                        href="{{route('gallery.edit.image', $image['id'])}}"
-                    >
-                        بروزرسانی
-                    </a>
+    <div class="image-gallery">
+
+        @foreach($images as $image)
+
+            <div class="image-card"  data-bs-toggle="modal" data-bs-target="#imageModal">
+
+                <img src="{{$image['url']}}" alt="Gallery Image" class="responsive-image" onclick="openImageModal('{{$image['url']}}')">
+
+                @if(Auth::user() and Auth::user()->role == true)
+                    <div class="button-container">
+                        <button class="update-btn"><a style="text-decoration: none; color:#fff;" href="{{route('gallery.edit.image', $image['id'])}}">آپدیت</a></button>
+                        <button class="delete-btn"><a style="text-decoration:none; color:#fff;" href="{{route('gallery.destroy.image', $image['id'])}}">حذف</a></button>
+                    </div>
                 @endif
+
             </div>
+
         @endforeach
+        <!-- می‌توانید تعداد دلخواه از عکس‌ها رو اضافه کنید -->
     </div>
+
 
     <!-- توضیحات گالری -->
     <div class="description-section mt-4">
-        <h4>توضیحات گالری</h4>
-        <p>در این گالری شما می‌توانید به مجموعه‌ای از نقاشی‌ها و هنرهای دستی مختلف نگاه کنید. هر تصویر داستانی خاص را روایت می‌کند و ما خوشحالیم که شما در این سفر هنری همراه ما هستید.</p>
-        <p><a href="{{route('like',$id)}}" class="bi bi-heart"></a> {{$likes_count}}</p>
+        <h4>{{$title}}</h4>
+        <p>{{$description}}</p>
+
         @if(session('error') != null)
-            @php $error = session('error') @endphp
+            @php
+                $error = session('error')
+            @endphp
+        @endif
+
+        <p><a href="{{route('like',$id)}}" class="@if(session('error') != null and $error['error'] == 'شما این گالری را پسندیده اید.') {{'bi bi-heart-fill'}} @else {{"bi bi-heart"}} @endif"></a> {{$likes_count}}</p>
+
+        @if(session('error') != null)
             <p style="font-size:15px; color:#000;">{{$error['error']}}</p>
         @endif
+
     </div>
 
     <!-- Modal for image preview -->
-    <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+    <div class="modal" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body text-center">
-                    <img src="" id="modalImage" alt="Large Image">
-                    <div class="mt-2">
-                        <button class="btn btn-secondary" id="prevImage" onclick="showPrevImage()">قبلی</button>
-                        <button class="btn btn-secondary" id="nextImage" onclick="showNextImage()">بعدی</button>
-                    </div>
+                <div class="modal-body">
+                    <img id="modalImage" src="" alt="" class="img-fluid">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="prevImage">قبلی</button>
+                    <button type="button" class="btn btn-secondary" id="nextImage">بعدی</button>
                 </div>
             </div>
         </div>
     </div>
 
-    @if(isset($comments))
+@if(isset($comments))
         <!-- بخش نظرات -->
         <div class="comments-section mt-4">
             @foreach($comments as $comment)
@@ -393,40 +459,77 @@
     </div>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0-alpha1/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        function openImageModal(imageUrl) {
+            var modalImage = document.getElementById('modalImage');
+            modalImage.src = imageUrl;
+
+            let currentImageIndex = 0;
+            let images = @json($images); // آرایه‌ای از URL تصاویر از PHP
+
+            function openImageModal(imageUrl) {
+                const modalImage = document.getElementById('modalImage');
+                modalImage.src = imageUrl;
+
+                // پیدا کردن ایندکس تصویر در آرایه
+                currentImageIndex = images.findIndex(image => image.url === imageUrl);
+            }
+
+            document.getElementById('prevImage').addEventListener('click', () => {
+                if (currentImageIndex > 0) {
+                    currentImageIndex--;
+                    const prevImageUrl = images[currentImageIndex].url;
+                    document.getElementById('modalImage').src = prevImageUrl;
+                }
+            });
+
+            document.getElementById('nextImage').addEventListener('click', () => {
+                if (currentImageIndex < images.length - 1) {
+                    currentImageIndex++;
+                    const nextImageUrl = images[currentImageIndex].url;
+                    document.getElementById('modalImage').src = nextImageUrl;
+                }
+            });
+
+        }
+    </script>
+
+
     <script>
         let currentImageIndex = 0;
-        let images = [];  // آرایه‌ای برای نگهداری URL تصاویر
+        const images = document.querySelectorAll('.gallery-image');
+        const modalImage = document.getElementById('modalImage');
+        const imageModal = new bootstrap.Modal(document.getElementById('imageModal'));
+        const prevButton = document.getElementById('prevImage');
+        const nextButton = document.getElementById('nextImage');
 
-        document.querySelectorAll('.gallery-item img').forEach((img, index) => {
-            images.push(img.src);  // URL تمام تصاویر را در آرایه ذخیره می‌کنیم
-            img.addEventListener('click', () => {
-                currentImageIndex = index;  // ذخیره شماره تصویر
-                showImageModal(images[currentImageIndex]);
+        // Open modal and show clicked image
+        images.forEach((image, index) => {
+            image.addEventListener('click', () => {
+                currentImageIndex = index;
+                modalImage.src = image.src;
+                imageModal.show();
             });
         });
 
-        function openImageModal(imageUrl) {
-            document.getElementById('modalImage').src = imageUrl;
-        }
 
-        function showPrevImage() {
-            if (currentImageIndex > 0) {
-                currentImageIndex--;
-            } else {
-                currentImageIndex = images.length - 1;
-            }
-            openImageModal(images[currentImageIndex]);
-        }
+        // Function to change image (previous and next)
+        prevButton.addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+            modalImage.src = images[currentImageIndex].src;
+        });
 
-        function showNextImage() {
-            if (currentImageIndex < images.length - 1) {
-                currentImageIndex++;
-            } else {
-                currentImageIndex = 0;
-            }
-            openImageModal(images[currentImageIndex]);
-        }
+        nextButton.addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            modalImage.src = images[currentImageIndex].src;
+        });
+
+
     </script>
+
 
     <script>
         document.querySelectorAll('.reply-btn').forEach(button => {
