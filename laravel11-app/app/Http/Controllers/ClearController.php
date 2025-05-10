@@ -33,9 +33,9 @@ class ClearController extends Controller
                 $type = $comment->type;
 
                 if($type == 'Gallery::class')
-                    $check = Gallery::where('gallery_id', $comment->gallery_id)->first();
+                    $check = Gallery::where('gallery_id', $comment->commentable_id)->first();
                 else
-                    $check = Category::where('category_id', $comment->category_id)->first();
+                    $check = Category::where('category_id', $comment->commentable_id)->first();
 
                 if(!$check) {
                     $comment->delete();

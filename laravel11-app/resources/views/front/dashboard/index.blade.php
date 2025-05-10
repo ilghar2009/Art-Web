@@ -70,7 +70,7 @@
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
 
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo mr-5" href="{{route('front.index')}}"><img src="/assets/images/logo.svg" class="mr-2" alt="logo"/></a>
+                <a class="navbar-brand brand-logo mr-5" href="{{route('front.index')}}">خانه</a>
                 <a class="navbar-brand brand-logo-mini" href="{{route('front.index')}}"><img src="/assets/images/logo-mini.svg" alt="logo"/></a>
             </div>
 
@@ -340,12 +340,12 @@
                         </a>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('front.reply')}}">
-                            <i class="icon-paper menu-icon"></i>
-                            <span class="menu-title">پاسخ ها</span>
-                        </a>
-                    </li>
+{{--                    <li class="nav-item">--}}
+{{--                        <a class="nav-link" href="{{route('front.reply')}}">--}}
+{{--                            <i class="icon-paper menu-icon"></i>--}}
+{{--                            <span class="menu-title">پاسخ ها</span>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
 
                 </ul>
             </nav>
@@ -405,6 +405,10 @@
                                 <button class="btn btn-light"  id="editButton" type="button">تغییر اطلاعات</button>
                                 <button type="submit" class="btn btn-primary mr-2">ثبت</button>
                                 <button class="btn btn-light">لغو</button>
+
+                                @if(Auth::user()->image !== null)
+                                    <a id="editButton" href="{{route('delete.profile')}}">حذف پروفایل</a>
+                                @endif
                             </form>
                         </div>
                     </div>

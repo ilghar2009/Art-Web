@@ -5,7 +5,6 @@
     <title>art_web</title>
 
     <style>
-
         #galleryCarousel .carousel-inner {
             position: relative;
             width: 100%;

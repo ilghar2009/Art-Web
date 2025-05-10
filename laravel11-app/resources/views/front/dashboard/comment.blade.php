@@ -385,8 +385,8 @@
                                 @foreach($comments as $comment)
 
                                     <div class="comment">
-                                        <h5>{{$comment->user()?->name}}:  @if($comment->parent?->user()->name !== null) @ {{$comment->parent->user()->name}}@endif</h5>
-                                        <p>{{$comments->text}}</p>
+                                        <h5>{{$comment->user?->name}}:  @if($comment->parent?->user->name !== null) {{$comment->parent->user->name}}@ @endif</h5>
+                                        <p>{{$comment->text}}</p>
                                     </div>
 
                                 @endforeach

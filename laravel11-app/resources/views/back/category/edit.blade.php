@@ -41,6 +41,9 @@
                           <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
                         </span>
                             </div>
+                            @error('image')
+                            <p>{{$message}}</p>
+                            @enderror
                         </div>
 
                         <div class="form-group">

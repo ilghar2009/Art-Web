@@ -25,18 +25,23 @@ class ShowController extends Controller
         return view('front.dashboard.index');
     }
 
-    public function reply(){
-        $user_id = Auth::user()->user_id;
-
-        $comments = Comment::where(function($query) use($user_id){
-            $query->where('created_by' ,$user_id)->where('status', true)
-                ->orwhere('reply_id', $user_id);
-        });
-
-        $comments = $comments->get();
-
-        return view('front.dashboard.comment',compact('comments'));
-    }
+//    public function reply(){
+//
+//        $user_id = Auth::user()->user_id;
+//
+//        $c = array();
+//
+//        $comment = Comment::where('created_by' ,$user_id)->where('status', true)->get();
+//
+//        foreach($comment as $v){
+//            $c[] = $v->id;
+//        }
+//
+//
+//}
+//
+//        return view('front.dashboard.comment',compact('comments'));
+//    }
 
     public function category_show(Category $category){
 

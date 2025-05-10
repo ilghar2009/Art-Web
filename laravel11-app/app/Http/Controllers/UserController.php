@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
@@ -119,5 +120,24 @@ class UserController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function destroy_profile(){
+
+        $user = Auth::user();
+
+        if($user->image !== null) {
+
+            $imagePath = public_path($user->image);
+
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
+
+            $user->image = null;
+
+            $user->save();
+
+        }
     }
 }

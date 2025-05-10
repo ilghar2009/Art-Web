@@ -35,6 +35,7 @@ Route::middleware(['Auth'])->group(function(){
         Route::get('/front/dashboard/', [ShowController::class, 'dashboard'])->name('front.dashboard');
         Route::get('/front/dashboard/reply/', [ShowController::class, 'reply'])->name('front.reply');
         Route::post('/front/dashboard/update/user/', [AuthController::class, 'update'])->name('update.user');
+        Route::get('/front/dashboard/delete/profile/', [UserController::class, 'destroy_profile'])->name('delete.profile');
 
     //backend
     Route::middleware(['Admin'])->group(function() {

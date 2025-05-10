@@ -83,7 +83,7 @@
 
                                     <td>
                                         @if($comment->reply_id)
-                                            <a>{{$comment?->reply_id}}</a>
+                                            <a>{{$comment?->parent->user->name.' : '.$comment->parent->text}}</a>
                                         @endif
                                     </td>
 
