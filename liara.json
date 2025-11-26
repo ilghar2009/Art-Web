@@ -1,5 +1,8 @@
 {
-  "laravel": {
-    "phpversion": "8.2"
-  }
+  "app": "webart",
+  "port": 3000,
+  "build": {
+    "location": "iran"
+  },
+  "disks": []
 }
