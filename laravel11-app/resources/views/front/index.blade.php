@@ -285,7 +285,7 @@
                 </p>
             </div>
             <div class="social-links d-flex justify-content-center">
-                <a href=""><i class="bi bi-twitter-x"></i></a>
+                <a href="https://x.com/ilghar09"><i class="bi bi-twitter-x"></i></a>
                 <a href="https://t.me/ilghar_09"><i class="bi bi-telegram"></i></a>
                 <a href="https://instagram.com/ilghar_09"><i class="bi bi-instagram"></i></a>
                 <a href="https://www.linkedin.com/in/ilghar-ebrahimi-113559384/"><i class="bi bi-linkedin"></i></a>
