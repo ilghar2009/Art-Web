@@ -53,10 +53,7 @@
             <div class="collapse" id="auth">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/samples/login.html">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="pages/samples/register.html">Register</a>
+                        <a class="nav-link" href="{{route('user.index')}}">user's</a>
                     </li>
                 </ul>
             </div>

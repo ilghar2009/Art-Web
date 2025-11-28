@@ -24,8 +24,10 @@ Route::group([], function(){
 //all route need to login
 Route::middleware(['Auth'])->group(function(){
 
-    //user update
+    //user
         Route::post('/user/update/{user}', [UserController::class, 'update'])->name('user.update');
+        Route::get('/user/', [UserController::class, 'index'])->name('user.index');
+        Route::get('/user/edit/{user}', [UserController::class, 'edit'])->name('user.edit');
 
     //comment user
     Route::post('/comment/create/', [CommentController::class, 'store'])->name('comment.store');

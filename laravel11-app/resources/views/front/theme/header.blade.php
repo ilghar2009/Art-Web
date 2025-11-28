@@ -7,7 +7,7 @@ use \Illuminate\Support\Facades\Auth;
         <a href="{{route('front.index')}}" class="logo d-flex align-items-center me-auto me-xl-0">
             <!-- Uncomment the line below if you also wish to use an image logo -->
             <!-- <img src="assets/img/logo.webp" alt=""> -->
-            <h1 class="sitename">EasyFolio</h1>
+            <h1 class="sitename">Ilghar</h1>
         </a>
 
         <nav id="navmenu" class="navmenu">
@@ -52,9 +52,9 @@ use \Illuminate\Support\Facades\Auth;
 
         <div class="header-social-links">
             <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
-            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+            <a href="https://t.me/ilghar_09" class="facebook"><i class="bi bi-telegram"></i></a>
+            <a href="https://instagram.com/ilghar_09" class="instagram"><i class="bi bi-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/ilghar-ebrahimi-113559384/" class="linkedin"><i class="bi bi-linkedin"></i></a>
         </div>
 
     </div>

@@ -2,7 +2,7 @@
 
 @section('head')
 
-    <title>art_web</title>
+    <title>ArtWeb</title>
 
     <style>
         #galleryCarousel .carousel-inner {
@@ -223,8 +223,6 @@
                               stroke-width="2"></path>
                     </svg>
                 </div>
-                <p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur
-                    vel illum qui dolorem</p>
             </div><!-- End Section Title -->
 
             <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -232,7 +230,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6 position-relative" data-aos="fade-right" data-aos-delay="200">
                         <div class="about-image">
-                            <img src="/assets/img/profile/profile-square-2.webp" alt="Profile Image"
+                            <img src="/assets/img/reaper_compressed.jpg" alt="Profile Image"
                                  class="img-fluid rounded-4">
                         </div>
                     </div>
@@ -241,67 +239,32 @@
                         <div class="about-content">
                             <span class="subtitle">About Me</span>
 
-                            <h2>UI/UX Designer &amp; Web Developer</h2>
+                            <h2>Backend Developer &amp; Web Developer</h2>
 
-                            <p class="lead mb-4">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut
-                                fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi
-                                nesciunt.</p>
-
-                            <p class="mb-4">Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet</p>
+                            <p class="lead mb-4">Backend developer skilled in Laravel, API development, and database design, with experience building secure and clean backend systems. Motivated to learn, grow, and contribute in professional team environments.</p>
 
                             <div class="personal-info">
                                 <div class="row g-4">
                                     <div class="col-6">
                                         <div class="info-item">
                                             <span class="label">Name</span>
-                                            <span class="value">Eliot Johnson</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-6">
-                                        <div class="info-item">
-                                            <span class="label">Phone</span>
-                                            <span class="value">+123 456 7890</span>
+                                            <span class="value">Ilghar</span>
                                         </div>
                                     </div>
 
                                     <div class="col-6">
                                         <div class="info-item">
                                             <span class="label">Age</span>
-                                            <span class="value">26 Years</span>
+                                            <span class="value">16 Years</span>
                                         </div>
                                     </div>
 
                                     <div class="col-6">
                                         <div class="info-item">
                                             <span class="label">Email</span>
-                                            <span class="value">email@example.com</span>
+                                            <span class="value">ilghar09.88@example.com</span>
                                         </div>
                                     </div>
-
-                                    <div class="col-6">
-                                        <div class="info-item">
-                                            <span class="label">Occupation</span>
-                                            <span class="value">Lorem Engineer</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-6">
-                                        <div class="info-item">
-                                            <span class="label">Nationality</span>
-                                            <span class="value">Ipsum</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="signature mt-4">
-                                <div class="signature-image">
-                                    <img src="/assets/img/misc/signature-1.webp" alt="" class="img-fluid">
-                                </div>
-                                <div class="signature-info">
-                                    <h4>Eliot Johnson</h4>
-                                    <p>Adipiscing Elit, Lorem Ipsum</p>
                                 </div>
                             </div>
                         </div>
@@ -323,9 +286,9 @@
             </div>
             <div class="social-links d-flex justify-content-center">
                 <a href=""><i class="bi bi-twitter-x"></i></a>
-                <a href=""><i class="bi bi-facebook"></i></a>
-                <a href=""><i class="bi bi-instagram"></i></a>
-                <a href=""><i class="bi bi-linkedin"></i></a>
+                <a href="https://t.me/ilghar_09"><i class="bi bi-telegram"></i></a>
+                <a href="https://instagram.com/ilghar_09"><i class="bi bi-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/ilghar-ebrahimi-113559384/"><i class="bi bi-linkedin"></i></a>
             </div>
             <div class="credits">
                 <!-- All the links in the footer should remain intact. -->

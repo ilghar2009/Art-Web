@@ -1,7 +1,7 @@
 @extends('back.theme.theme')
 
 @section('head')
-    <title>Galleries</title>
+    <title>User's</title>
 @endsection
 
 @section('body')
@@ -10,50 +10,63 @@
             <div class="row">
                 <div class="col-md-12 grid-margin">
                     <div class="main-panel">
-                    <h4 class="card-title">Galleries</h4>
-                    <div class="table-responsive pt-3">
-                        <table class="table table-dark">
-                            <thead>
-                            <tr>
-                                <th>
-                                    #
-                                </th>
-                                <th>
-                                    Name
-                                </th>
-                                <th>
-                                    Email
-                                </th>
-                            </tr>
-                            </thead>
-                            @php $i = 0; @endphp
-                        @foreach($galleries as $gallery)
-                                <tbody>
-                                <tr>
-                                    <td>
-                                        {{++$i}}
-                                    </td>
 
-                                    <td>
-                                        {{$user->name}}
-                                    </td>
+                    <h4 class="card-title">Users</h4>
 
-                                    <td>
-                                        {{$user->email}}
-                                    </td>
+                        <div class="table-responsive pt-3">
+                            <table class="table table-dark">
 
-                                    <td>
-                                        <a class="btn btn-danger" href="{{route('user.destroy', $gallery->gallery_id)}}">Delete</a>
-                                    </td>
-                                </tr>
-                                </tbody>
-                        @endforeach
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            #
+                                        </th>
+                                        <th>
+                                            Name
+                                        </th>
+                                        <th>
+                                            Email
+                                        </th>
+                                        <th>
+                                            Role
+                                        </th>
+                                    </tr>
+                                </thead>
 
-                        </table>
-                    <div>
-                </div>
-            </div>
-        </div>
+                                @php $i = 0; @endphp
+                                @foreach($users as $user)
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                {{++$i}}
+                                            </td>
+
+                                            <td>
+                                                {{$user->name}}
+                                            </td>
+
+                                            <td>
+                                                {{$user->email}}
+                                            </td>
+
+                                            <td>
+                                                {{$user->role? "admin" : "client"}}
+                                            </td>
+
+                                            @if($user->user_id != \Illuminate\Support\Facades\Auth::user()->user_id and $user->name != 'admin')
+                                                <td>
+                                                    <a class="btn btn-danger" href="{{route('user.edit', $user->user_id)}}">Edit role</a>
+                                                </td>
+                                            @endif
+
+                                        </tr>
+                                    </tbody>
+                                @endforeach
+
+                            </table>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
