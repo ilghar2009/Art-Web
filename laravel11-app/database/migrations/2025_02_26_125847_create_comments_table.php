@@ -15,9 +15,10 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->longText('text');
             $table->string('created_by');
-            $table->string('gallery_id')->nullable();
-            $table->string('category_id')->nullable();
+            $table->string('commentable_id')->nullable();
+            $table->string('commentable_type')->nullable();
             $table->string('reply_id')->nullable();
+            $table->boolean('status')->default(false);
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('comment');
     }
 };

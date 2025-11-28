@@ -13,7 +13,7 @@
 
                         <h4 class="card-title">Galleries</h4>
 
-                        <div class="table-responsive pt-3">
+
                         <table class="table table-dark">
 
                             <thead>
@@ -65,13 +65,13 @@
                                     </td>
 
                                     <td>
-                                        <img src="{{$gallery->images?->image}}" alt="">
+                                        <img src="{{$gallery->images?->image}}" alt="{{$gallery->title}}" style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover;">
                                     </td>
 
                                     <td>
                                         <a class="btn btn-success" href="{{route('gallery.edit', $gallery->gallery_id)}}">Update</a>
                                         <a class="btn btn-danger" href="{{route('gallery.destroy', $gallery->gallery_id)}}">Delete</a>
-                                        <a class="btn btn-dark" href="{{route('gallery.show.image',$gallery->gallery_id)}}">Show all Image of these gallery</a>
+                                        <a class="btn btn-dark" href="{{route('show.gallery',$gallery->gallery_id)}}">Show all Image of these gallery</a>
                                     </td>
 
                                 </tr>
@@ -79,7 +79,7 @@
                         @endforeach
 
                         </table>
-                    <div>
+
                 </div>
             </div>
                     </div>

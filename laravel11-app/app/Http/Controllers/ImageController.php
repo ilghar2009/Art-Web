@@ -25,7 +25,8 @@ class ImageController extends Controller
     public function store_gallery_image(Request $request){
 
         $validator = validator()->make($request->all(),[
-            'image' => ['required', 'image', 'max:1024', 'mimes:jpeg,png,jpg,svg,webp', 'min:1'],
+            'image' => ['required', 'image', 'max:7812.5', 'mimes:jpeg,png,jpg,svg,webp', 'min:1'],
+            'gallery_id' => ['required', 'exists:App\Models\Gallery,gallery_id'],
         ]);
 
         if($validator->fails()){

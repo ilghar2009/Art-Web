@@ -9,6 +9,7 @@ class Like extends Model
     protected $fillable = [
         'user_id',
         'gallery_id',
+        'ip',
     ];
 
     public function gallery(){

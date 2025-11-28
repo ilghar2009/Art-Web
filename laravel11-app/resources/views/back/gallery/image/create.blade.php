@@ -68,7 +68,7 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="form-group">
-                                            <p>Gallery_id</p>
+                                            <p>role</p>
                                             <select name="role" class="form-control form-control-sm" id="exampleFormControlSelect3">
                                                 <option value="{{true}}">اصلی</option>
                                                 <option selected value="{{false}}">فرعی</option>

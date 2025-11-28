@@ -6,6 +6,11 @@
         p{
             color:darkred;
         }
+        input{
+            font-size: 18px;
+            font-family: 'nazanin', sans-serif !important;
+            font-weight: bold;
+        }
     </style>
 @endsection
 
@@ -40,6 +45,9 @@
                               <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
                             </span>
                                 </div>
+                                @error('image')
+                                    <p>{{$message}}</p>
+                                @enderror
                             </div>
 
                             <div class="form-group">

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\About;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -23,6 +24,13 @@ class DatabaseSeeder extends Seeder
             'role' => true,
         ]);
 
+        $file = ['bi bi-instagram','bi bi-telegram','bi bi-whatsapp','bi bi-facebook'];
+
+        foreach ($file as $icon) {
+            About::create([
+                'icon' =>  $icon,
+            ]);
+        }
 
     }
 }

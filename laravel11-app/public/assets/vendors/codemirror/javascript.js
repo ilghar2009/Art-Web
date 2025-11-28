@@ -178,7 +178,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
   // parsing the argument patterns for a fat-arrow function before we
   // actually hit the arrow token. It only works if the arrow is on
   // the same line as the arguments and there's no strange noise
-  // (comments) in between. Fallback is to only notice when we hit the
+  // (comment) in between. Fallback is to only notice when we hit the
   // arrow, and not declare the arguments as locals for the arrow
   // body.
   function findFatArrow(stream, state) {

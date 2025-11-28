@@ -37,16 +37,22 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 
+  <link rel="stylesheet" href="/assets/fonts/Vazirmatn-font-face">
+  <link rel="stylesheet" href="/assets/fonts/Vazirmatn-Variable-font-face.css">
+
   <style>
     @font-face {
-      font-family: "parastoo";
-      src: url("/assets/fonts/parastoo-font-v1.0.0-alpha5/web/Farsi-Digits/Parastoo-Bold-FD.woff") format("woff"),
-      url("/assets/fonts/parastoo-font-v1.0.0-alpha5/web/Farsi-Digits/Parastoo-Bold-FD.ttf") format("truetype");
+      font-family: 'Byekan';
+      src: url('/assets/fonts/384.Font.Farsi/BYekan.ttf') format('truetype');
       font-weight: normal;
       font-style: normal;
     }
+
     body{
-      font-family: 'parastoo', sans-serif !important;
+      font-family: 'Vazir', sans-serif;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Byekan', sans-serif;
     }
 
   </style>
