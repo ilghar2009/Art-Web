@@ -57,8 +57,6 @@ class AuthController extends Controller
 
         $user = $request->only('email', 'password');
 
-        dd($user);
-
         if(!Auth::attempt($user)){
             return Redirect::route('login')->withInput()->with('error', __('auth.failed'));
 

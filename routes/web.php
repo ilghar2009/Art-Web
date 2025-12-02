@@ -85,8 +85,8 @@ Route::middleware(['Auth'])->group(function(){
             Route::get('/auth/register/', [AuthController::class, 'register'])->name('register');
 
             Route::group([AuthenticateSession::class], function(){
-                Route::post('/back/auth/login/', [AuthController::class, 'login'])->name('back.login');
-                Route::post('/back/auth/register/', [AuthController::class, 'sign_in'])->name('back.register');
+                Route::post('/back/auth/login', [AuthController::class, 'login'])->name('back.login');
+                Route::post('/back/auth/register', [AuthController::class, 'sign_in'])->name('back.register');
             });
     //end Auth
 
