@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,16 +8,25 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-    <title>{{$title}} دسته‌بندی</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Playwrite+NO:wght@100..400&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+
+    <title>{{$title}}Category:</title>
 
     <style>
+        html{
+            height: 100%;
+        }
         body {
-            font-family: Arial, sans-serif;
-            direction: rtl;
-            text-align: right;
+            direction: ltr;
             margin: 0;
             padding: 0;
             background-color: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
         .container {
             width: 80%;
@@ -95,7 +104,7 @@
             color: #fff;
             text-align: center;
             padding: 20px 0;
-            margin-top: 30px;
+            margin-top: auto;
             font-size: 16px;
             border-radius: 8px;
         }
@@ -212,23 +221,30 @@
             margin-top: 30px;
         }
 
+        *{
+            font-family: "Playfair Display", serif;
+            font-optical-sizing: auto;
+            font-weight: 500;
+            font-style: normal;
+        }
+
     </style>
 
 </head>
-<body>
+<body dir="ltr">
 <div class="header">
-    <a href="{{route('front.index')}}">خانه</a>
+    <a href="{{route('front.index')}}">Home</a>
     <span>{{$title}}</span>
     <div class="user-info">
         @if($user = Auth::user())
             <a href="@if($user->role){{route('back.index')}}@endif">{{$user->name}}</a>
         @else
-            <a href="{{route('register')}}">ورود / ثبت نام</a>
+            <a href="{{route('register')}}">Sign in/up</a>
         @endif
     </div>
 </div>
 <div class="container">
-    <img style="border-radius:10px" src="{{$image}}" alt="تصویر دسته‌بندی" class="category-image" onclick="openImageModal()">
+    <img style="border-radius:10px" src="{{$image}}" alt="category_image" class="category-image" onclick="openImageModal()">
 
     <div class="description-section mt-4">
         <h4>{{$title}}</h4>
@@ -258,7 +274,7 @@
                     <div class="action d-flex justify-content-between mt-2 align-items-center">
                         <div class="reply px-4">
                             <span class="dots">• • •</span>
-                            <small class="reply-btn text-primary" data-id="{{ $comment['id'] }}" data-name="{{$comment['name']}}">پاسخ</small>
+                            <small class="reply-btn text-primary" data-id="{{ $comment['id'] }}" data-name="{{$comment['name']}}">Reply</small>
                             <span class="dots">• • •</span>
                         </div>
                         <div class="icons align-items-center text-warning">
@@ -272,16 +288,16 @@
     @endif
 
     <div class="card p-3 mt-4 border-0 shadow-sm rounded" style="max-width: 700px; margin: auto; margin-bottom: 10px;">
-        <h5 class="mb-3">چطور فکر می‌کنید؟</h5>
+        <h5 class="mb-3">What do you think?</h5>
         <form method="POST" action="{{ route('comment.store') }}">
             @csrf
             <input type="hidden" name="reply_id" id="reply_id" value="">
             <input type="hidden" name="id" value="{{$id}}">
             <input type="hidden" name="type" value="category">
             <input type="text" id="reply" style="border:none; outline:none; background-color:#1e1e2f; color:#fff; margin:5px;" disabled>
-            <label class="destroy" style=" margin:5px;"><button id="destroy" style="background-color:transparent;  outline:none; color:red; border:none; font-size:18px;" onclick="destroy()" type="button">لغو</button></label>
-            <textarea style="background: #2a2a3b; color: #fff;" name="text" class="form-control mb-2" id="comment-text" placeholder="نظر شما برای ما بسیار ارزشمند است." rows="3"></textarea>
-            <button type="submit" class="btn btn-primary" style="width: 100%;">ارسال</button>
+            <label class="destroy" style=" margin:5px;"><button id="destroy" style="background-color:transparent;  outline:none; color:red; border:none; font-size:18px;" onclick="destroy()" type="button">Cancel</button></label>
+            <textarea style="background: #2a2a3b; color: #fff;" name="text" class="form-control mb-2" id="comment-text" placeholder="Write a comment…" rows="3"></textarea>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Send</button>
         </form>
     </div>
     {{--    end comments --}}
@@ -290,12 +306,12 @@
 
 <!-- Modal for viewing the image in full size -->
 <div id="imageModal" style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); justify-content: center; align-items: center;">
-    <img src="{{$image}}" alt="تصویر دسته‌بندی" style="max-width: 90%; max-height: 90%; border-radius: 10px;">
-    <button onclick="closeImageModal()" style="position: absolute; top: 20px; right: 20px; background-color: red; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer;">بستن</button>
+    <img src="{{$image}}" alt="category_image" style="max-width: 90%; max-height: 90%; border-radius: 10px;">
+    <button onclick="closeImageModal()" style="position: absolute; top: 20px; right: 20px; background-color: red; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer;">close</button>
 </div>
 
 <div class="footer">
-    <p>ساخته شده توسط <a href="https://github.com/{{'ilghar2009'}}" target="_blank">ایلقار ابراهیمی</a></p>
+    <p>Created by <a href="https://github.com/{{'ilghar2009'}}" target="_blank">ilghar</a></p>
 </div>
 
 <script>

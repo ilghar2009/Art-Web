@@ -17,7 +17,7 @@ class AdminMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         if(!Auth::user()->role){
-            return redirect()->route('login')->with('error', 'برای وارد شدن به این بخش باید ادمین باشید.');
+            return redirect()->route('login')->with('error', 'Only admins can access this section.');
         }
             return $next($request);
     }

@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>ورود</title>
+  <title>Login</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -37,28 +37,34 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 
-  <link rel="stylesheet" href="/assets/fonts/Vazirmatn-font-face">
-  <link rel="stylesheet" href="/assets/fonts/Vazirmatn-Variable-font-face.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Playwrite+NO:wght@100..400&display=swap" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Playwrite+NO:wght@100..400&display=swap" rel="stylesheet">
 
   <style>
-    @font-face {
-      font-family: 'Byekan';
-      src: url('/assets/fonts/384.Font.Farsi/BYekan.ttf') format('truetype');
-      font-weight: normal;
-      font-style: normal;
-    }
 
     body{
-      font-family: 'Vazir', sans-serif;
+      font-family: 'Playwrite NO', cursive;
+      font-optical-sizing: auto;
+      font-weight: 700;
+      font-style: normal;
     }
     h1, h2, h3, h4, h5, h6 {
-      font-family: 'Byekan', sans-serif;
+      font-family: 'Playfair Display', serif;
+      direction: ltr;
+      font-optical-sizing: auto;
+      font-weight: 600;
+      font-style: normal;
     }
 
   </style>
 </head>
 
-<body dir="rtl">
+<body dir="ltr">
 
   <main>
     <div class="container">
@@ -73,32 +79,32 @@
                 <div class="card-body">
 
                   <div class="pt-4 pb-2">
-                    <h5 class="card-title text-center pb-0 fs-4">به حساب کاربری خود وارد شوید</h5>
-                    <p class="text-center small">نام کاربری و رمز عبور خود را وارد کنید</p>
+                    <h5 class="card-title text-center pb-0 fs-4">Sign in to your account</h5>
+                    <p class="text-center small">Please enter your email and password</p>
                   </div>
 
                   <form class="row g-3 needs-validation" action="{{route('back.login')}}" method="post">
                     @csrf
                     <div class="col-12">
-                      <label for="yourEmail" class="form-label">ایمیل</label>
+                      <label for="yourEmail" class="form-label">Email:</label>
                       <input type="email" name="email" class="form-control" id="yourEmail" value="{{ old('email') }}" required>
-                      <div class="invalid-feedback">لطفا آدرس ایمیل خود را وارد کنید</div>
+                      <div class="invalid-feedback">Please enter your email address.</div>
                     </div>
 
                     <div class="col-12">
-                      <label for="yourPassword" class="form-label">رمز عبور</label>
+                      <label for="yourPassword" class="form-label">Password:</label>
                       <input type="password" name="password" class="form-control" id="yourPassword" required>
-                      <div class="invalid-feedback">رمز عبور خود را وارد کنید</div>
+                      <div class="invalid-feedback">Please Enter your Password.</div>
                     </div>
 
 
                     <div class="col-12">
-                      <button class="btn btn-primary w-100" type="submit">ورود</button>
+                      <button class="btn btn-primary w-100" type="submit">Login</button>
                     </div>
 
                     <div class="col-12">
-                      <p class="small mb-0">حساب کاربری ندارید؟ <a href="{{route('register')}}" style="text-decoration: none;">یک حساب کاربری بسازید</a></p>
-                      <p><a href="{{route('front.index')}}" style="color:#000; text-decoration: none;">صفحه اصلی</a></p>
+                      <p class="small mb-0">Need an account?<a href="{{route('register')}}" style="text-decoration: none;">Register</a></p>
+                      <p><a href="{{route('front.index')}}" style="color:#000; text-decoration: none;">Home</a></p>
 
                       @if(!empty(session('error')))
                         <ul>

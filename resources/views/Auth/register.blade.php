@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>ثبت نام</title>
+  <title>register</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -37,24 +37,27 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Playwrite+NO:wght@100..400&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="/assets/fonts/Vazirmatn-font-face">
-  <link rel="stylesheet" href="/assets/fonts/Vazirmatn-Variable-font-face.css">
-
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Playwrite+NO:wght@100..400&display=swap" rel="stylesheet">
 
   <style>
-    @font-face {
-      font-family: 'Byekan';
-      src: url('/assets/fonts/384.Font.Farsi/BYekan.ttf') format('truetype');
-      font-weight: normal;
+    body{
+      font-family: 'Playwrite NO', cursive;
+      font-optical-sizing: auto;
+      font-weight: 700;
       font-style: normal;
     }
-
-    body{
-      font-family: 'Vazir', sans-serif;
-    }
     h1, h2, h3, h4, h5, h6 {
-      font-family: 'Byekan', sans-serif;
+      font-family: 'Playfair Display', serif;
+      direction: ltr;
+      font-optical-sizing: auto;
+      font-weight: 600;
+      font-style: normal;
     }
     li{
       color:darkred;
@@ -63,7 +66,7 @@
   </style>
 </head>
 
-<body dir="rtl">
+<body dir="ltr">
 
   <main>
     <div class="container">
@@ -79,8 +82,8 @@
                 <div class="card-body">
 
                   <div class="pt-4 pb-2">
-                    <h5 class="card-title text-center pb-0 fs-4">ساخت اکانت جدید</h5>
-                    <p class="text-center small">مشخصات شخصی خود را برای ایجاد حساب وارد کنید:</p>
+                    <h5 class="card-title text-center pb-0 fs-4">Create a new account</h5>
+                    <p class="text-center small">Fill in your personal information to sign up:</p>
                   </div>
 
                   <form class="row g-3 needs-validation" action="{{route('back.register')}}" method="post">
@@ -88,9 +91,9 @@
                     @csrf
 
                     <div class="col-12">
-                      <label for="yourName" class="form-label">نام</label>
+                      <label for="yourName" class="form-label">Name:</label>
                       <input type="text" name="name" class="form-control" id="yourName" value="{{old('name')}}" required>
-                      <div class="invalid-feedback">لطفا نام خود را وارد کنید.</div>
+                      <div class="invalid-feedback">Please enter your name.</div>
 
                       @error('name')
                         <li>{{$message}}</li>
@@ -99,9 +102,9 @@
                     </div>
 
                     <div class="col-12">
-                      <label for="yourEmail" class="form-label">ایمیل</label>
+                      <label for="yourEmail" class="form-label">Email:</label>
                       <input type="email" name="email" class="form-control" id="yourEmail" value="{{old('email')}}" required>
-                      <div class="invalid-feedback">لطفا آدرس ایمیل خود را وارد کنید</div>
+                      <div class="invalid-feedback">Your email address</div>
 
                       @error('email')
                         <li>{{$message}}</li>
@@ -110,9 +113,9 @@
                     </div>
 
                     <div class="col-12">
-                      <label for="yourPassword" class="form-label">رمز عبور</label>
+                      <label for="yourPassword" class="form-label">Password:</label>
                       <input type="password" name="password" class="form-control" id="yourPassword" required>
-                      <div class="invalid-feedback">رمز عبور خود را وارد کنید</div>
+                      <div class="invalid-feedback">Your password</div>
 
                       @error('password')
                         <li>{{$message}}</li>
@@ -121,12 +124,12 @@
                     </div>
 
                     <div class="col-12">
-                      <button class="btn btn-primary w-100" type="submit">ثبت نام</button>
+                      <button class="btn btn-primary w-100" type="submit">Join Now</button>
                     </div>
 
                     <div class="col-12">
-                      <p class="small mb-0">در حال حاضر یک حساب کاربری دارید؟<a href="{{route('login')}}" style="text-decoration: none;">ورود</a></p>
-                      <p><a href="{{route('front.index')}}" style="color:#000; text-decoration: none;">صفحه اصلی</a></p>
+                      <p class="small mb-0">Already have an account?<a href="{{route('login')}}" style="text-decoration: none;">Login</a></p>
+                      <p><a href="{{route('front.index')}}" style="color:#000; text-decoration: none;">Home</a></p>
                     </div>
 
                   </form>

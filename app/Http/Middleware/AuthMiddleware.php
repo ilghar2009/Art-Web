@@ -19,9 +19,8 @@ class AuthMiddleware
     {
 
         if(!Auth::check()){
-            return redirect()->route('login')->with('error','وارد اکانت خود شوید.');
+            return redirect()->route('login')->with('error','You must be logged in.');
         }
             return $next($request);
-
     }
 }
