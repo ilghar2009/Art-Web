@@ -2,28 +2,41 @@
 use \Illuminate\Support\Facades\Auth;
 ?>
 <!doctype html>
-<html lang="fn">
+<html lang="en">
 <head>
     @include('front.theme.head')
 
-    <link rel="stylesheet" href="/assets/fonts/Vazirmatn-font-face">
-    <link rel="stylesheet" href="/assets/fonts/Vazirmatn-Variable-font-face.css">
+{{--    font for title and head --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Playwrite+NO:wght@100..400&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Playwrite+NO:wght@100..400&display=swap" rel="stylesheet">
 
     @yield('head')
 
     <style>
-        @font-face {
-            font-family: 'Byekan';
-            src: url('/assets/fonts/384.Font.Farsi/BYekan.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
-        }
+        #header {
+           font-family: "Playfair Display", serif;
+           font-optical-sizing: auto;
+           font-weight: 600;
+           font-style: normal;
+       }
 
         body{
-            font-family: 'Vazir', sans-serif;
+            font-family: 'Playfair Display', serif;
+            direction: ltr;
+            font-optical-sizing: auto;
+            font-weight: 600;
+            font-style: normal;
         }
         h1, h2, h3, h4, h5, h6 {
-            font-family: 'Byekan', sans-serif;
+            font-family: 'Playwrite NO', cursive;
+            font-optical-sizing: auto;
+            font-weight: 700;
+            font-style: normal;
         }
 
         *{
@@ -35,13 +48,11 @@ use \Illuminate\Support\Facades\Auth;
         }
 
         p{
-            font-family: 'Vazir', sans-serif;
-            font-weight: bold; /* استفاده از نسخه بولد فونت */
         }
     </style>
 </head>
 
-<body class="index-page" dir="rtl">
+<body class="index-page" dir="ltr">
     @include('front.theme.header')
 
     @yield('body')

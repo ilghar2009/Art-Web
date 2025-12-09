@@ -1,5 +1,9 @@
 {
   "laravel": {
     "phpVersion": "8.3"
+  }, "disk": [
+  {
+    'name': "uploads"
   }
+]
 }

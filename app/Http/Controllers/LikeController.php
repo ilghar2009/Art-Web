@@ -30,12 +30,12 @@ class LikeController extends Controller
                 'ip' => $ip,
             ]);
         else {
-            $errors = ['error'=> 'شما قبلا این گالری را لایک کرده اید', 'gallery_id' => $id];
+            $errors = ['error'=> 'You’ve already liked this gallery.', 'gallery_id' => $id];
 
             return Redirect::back()->with('error', $errors);
         }
 
-            $errors = ['error'=> 'شما این گالری را پسندیده اید.', 'gallery_id' => $id];
+            $errors = ['error'=> 'You’ve already liked this gallery.', 'gallery_id' => $id];
 
         return Redirect::back()->with('error', $errors);
     }

@@ -63,12 +63,12 @@
 
             <button class="carousel-control-prev" type="button" data-bs-target="#galleryCarousel" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">قبلی</span>
+                <span class="visually-hidden">before</span>
             </button>
 
             <button class="carousel-control-next" type="button" data-bs-target="#galleryCarousel" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">بعدی</span>
+                <span class="visually-hidden">after</span>
             </button>
 
         </div>
@@ -81,15 +81,14 @@
 
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
-                <h2>دسته بندی ها</h2>
+                <h2>Category:</h2>
                 <div class="title-shape">
                     <svg viewBox="0 0 200 20" xmlns="http://www.w3.org/2000/svg">
                         <path d="M 0,10 C 40,0 60,20 100,10 C 140,0 160,20 200,10" fill="none" stroke="currentColor"
                               stroke-width="2"></path>
                     </svg>
                 </div>
-                <p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur
-                    vel illum qui dolorem</p>
+
             </div><!-- End Section Title -->
 
             <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -117,7 +116,7 @@
                                     </div>
 
                                     <div class="portfolio-content">
-                                        <span class="category">:دسته بندی</span>
+                                        <span class="category">category:</span>
                                         <h3>{{$category->title}}</h3>
                                         <p>{{$category->description}}</p>
                                     </div>
@@ -140,7 +139,7 @@
 
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
-                <h2>گالری</h2>
+                <h2>Gallery</h2>
                 <div class="title-shape">
                     <svg viewBox="0 0 200 20" xmlns="http://www.w3.org/2000/svg">
                         <path d="M 0,10 C 40,0 60,20 100,10 C 140,0 160,20 200,10" fill="none" stroke="currentColor" stroke-width="2"></path>
@@ -154,7 +153,7 @@
 
                     <div class="portfolio-filters-container" data-aos="fade-up" data-aos-delay="200">
                         <ul class="portfolio-filters isotope-filters">
-                            <li data-filter="*" @if(!isset($active)) class="filter-active" @endif><a style="color:#000; text-decoration: none;" href="{{route('front.index')}}">همه ی دسته بندی ها</a></li>
+                            <li data-filter="*" @if(!isset($active)) class="filter-active" @endif><a style="color:#000; text-decoration: none;" href="{{route('front.index')}}">all of categories</a></li>
                             @foreach($categories as $category)
                                 <li data-filter=".filter-web" @if(isset($active) and $active == $category->category_id) class="filter-active" @endif value="{{$category->category_id}}"><a style="color:#000" href="{{route('search.gallery', $category->category_id)}}">{{$category?->title}}</a></li>
                             @endforeach
@@ -177,7 +176,7 @@
                                                 @if(session('error') != null)
                                                     @php $error = session('error') @endphp
                                                 @endif
-                                                <a href="{{route('like',$gallery->gallery_id)}}" class="@if(session('error') != null and $error['gallery_id'] == $gallery->gallery_id and $error['error'] == 'شما این گالری را پسندیده اید.') {{'bi bi-heart-fill'}} @else {{'bi bi-heart'}} @endif">{{$gallery->likes_count}}</a>
+                                                <a href="{{route('like',$gallery->gallery_id)}}" class="@if(session('error') != null and $error['gallery_id'] == $gallery->gallery_id and $error['error'] !== 'You’ve already liked this gallery.') {{'bi bi-heart-fill'}} @else {{'bi bi-heart'}} @endif">{{$gallery->likes_count}}</a>
 
                                                 <a href="{{route('show.gallery',$gallery->gallery_id)}}" class="details-link">
                                                     <i class="bi bi-arrow-right"></i>

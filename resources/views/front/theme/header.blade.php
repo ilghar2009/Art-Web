@@ -13,7 +13,7 @@ use \Illuminate\Support\Facades\Auth;
         <nav id="navmenu" class="navmenu">
             <ul>
 
-                <li class="dropdown"><a href="#category"><span>دسته بندی</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <li class="dropdown"><a href="#category"><span>Categories</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                     <ul>
                         @foreach($categories as $category)
                             <li><a href="{{route('show.category', $category?->category_id)}}">{{$category?->title}}</a></li>
@@ -21,8 +21,8 @@ use \Illuminate\Support\Facades\Auth;
                     </ul>
                 </li>
 
-                <li><a href="#about">درباره ی ما</a></li>
-                <li><a href="#gallery">گالری</a></li>
+                <li><a href="#about">About us</a></li>
+                <li><a href="#gallery">Gallery</a></li>
                 @php
                     if(Auth::user()?->role == true)
                         $route = 'back.index';
@@ -31,17 +31,17 @@ use \Illuminate\Support\Facades\Auth;
                 @endphp
 
                 @if(!$user = Auth::user())
-                    <li><a href="{{route('register')}}">ورود/ ثبت نام</a></li>
+                    <li><a href="{{route('register')}}">Sign in/up</a></li>
                 @else
-                    <li class="dropdown"><a href="#"><span> سلام {{$user->name}}</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                    <li class="dropdown"><a href="#"><span> Hi {{$user->name}}</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul>
 
                             @if($user->role == true)
-                                <li><a href="{{route('back.index')}}">صفحه ادمین</a></li>
+                                <li><a href="{{route('back.index')}}">Admin Dashboard</a></li>
                             @endif
 
-                            <li><a href="{{route('front.dashboard')}}">داشبورد کاربران</a></li>
-                            <li><a href="{{route('logout')}}">خروج از اکانت</a></li>
+                            <li><a href="{{route('front.dashboard')}}">User Panel</a></li>
+                            <li><a href="{{route('logout')}}">Logout</a></li>
                         </ul>
                     </li>
                 @endif

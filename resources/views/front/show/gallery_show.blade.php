@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>گالری {{$title}}</title>
+    <title>gallery: {{$title}}</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -324,15 +324,15 @@
 
     </style>
 </head>
-<body dir="rtl">
+<body dir="ltr">
 <header class="header">
     <h3>{{$title}}</h3>
     <nav>
-        <a href="{{route('front.index')}}">خانه</a>
+        <a href="{{route('front.index')}}">Home</a>
         @if($user = Auth::user())
             <a href="@if($user->role == true){{route('back.index')}} @else {{route('front.dashboard')}}@endif">{{$user->name}}</a>
         @else
-            <a href="{{route('register')}}">ورود / ثبت نام</a>
+            <a href="{{route('register')}}">sign in/up</a>
         @endif
     </nav>
 </header>
@@ -351,8 +351,8 @@
 
                 @if(Auth::user() and Auth::user()->role == true)
                     <div class="button-container">
-                        <button class="update-btn"><a style="text-decoration: none; color:#fff;" href="{{route('gallery.edit.image', $image['id'])}}">آپدیت</a></button>
-                        <button class="delete-btn"><a style="text-decoration:none; color:#fff;" href="{{route('gallery.destroy.image', $image['id'])}}">حذف</a></button>
+                        <button class="update-btn"><a style="text-decoration: none; color:#fff;" href="{{route('gallery.edit.image', $image['id'])}}">update</a></button>
+                        <button class="delete-btn"><a style="text-decoration:none; color:#fff;" href="{{route('gallery.destroy.image', $image['id'])}}">delete</a></button>
                     </div>
                 @endif
 
@@ -374,7 +374,7 @@
             @endphp
         @endif
 
-        <p><a href="{{route('like',$id)}}" class="@if(session('error') != null and $error['error'] == 'شما این گالری را پسندیده اید.') {{'bi bi-heart-fill'}} @else {{"bi bi-heart"}} @endif"></a> {{$likes_count}}</p>
+        <p><a href="{{route('like',$id)}}" class="@if(session('error') != null and $error['error'] !== 'You’ve already liked this gallery.') {{'bi bi-heart-fill'}} @else {{"bi bi-heart"}} @endif"></a> {{$likes_count}}</p>
 
         @if(session('error') != null)
             <p style="font-size:15px; color:#000;">{{$error['error']}}</p>
@@ -393,8 +393,8 @@
                     <img id="modalImage" src="" alt="" class="img-fluid">
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" id="prevImage">قبلی</button>
-                    <button type="button" class="btn btn-secondary" id="nextImage">بعدی</button>
+                    <button type="button" class="btn btn-secondary" id="prevImage">before</button>
+                    <button type="button" class="btn btn-secondary" id="nextImage">after</button>
                 </div>
             </div>
         </div>
@@ -430,7 +430,7 @@
                     <div class="action d-flex justify-content-between mt-2 align-items-center">
                         <div class="reply px-4">
                             <span class="dots">• • •</span>
-                            <small class="reply-btn text-primary" data-id="{{ $comment['id'] }}" data-name="{{$comment['name']}}">پاسخ</small>
+                            <small class="reply-btn text-primary" data-id="{{ $comment['id'] }}" data-name="{{$comment['name']}}">Reply</small>
                             <span class="dots">• • •</span>
                         </div>
                     </div>
@@ -441,21 +441,21 @@
 
     <!-- Comment form -->
     <div class="card p-3 mt-4 border-0 shadow-sm rounded" style="max-width: 700px; margin: auto;">
-        <h5 class="mb-3">چطور فکر می‌کنید؟</h5>
+        <h5 class="mb-3">What do you think?</h5>
         <form method="POST" action="{{ route('comment.store') }}">
             @csrf
             <input type="hidden" name="reply_id" id="reply_id" value="">
             <input type="hidden" name="id" value="{{$id}}">
             <input type="hidden" name="type" value="gallery">
             <input type="text" id="reply" style="border:none; outline:none; background-color:#1e1e2f; color:#fff; margin:5px;" disabled>
-            <label style=" margin:5px;"><button style="background-color:transparent; font-size:18px;  outline:none; color:red; border:none;" onclick="destroy()" type="button">لغو</button></label>
-            <textarea name="text" class="form-control mb-2" id="comment-text" placeholder="نظر شما برای ما بسیار ارزشمند است." rows="3"></textarea>
-            <button type="submit" class="btn btn-primary" style="width: 20%;">ارسال</button>
+            <label style=" margin:5px;"><button style="background-color:transparent; font-size:18px;  outline:none; color:red; border:none;" onclick="destroy()" type="button">Cancel</button></label>
+            <textarea name="text" class="form-control mb-2" id="comment-text" placeholder="Write a comment…" rows="3"></textarea>
+            <button type="submit" class="btn btn-primary" style="width: 20%;">Send</button>
         </form>
     </div>
 
     <div class="footer">
-        <p>ساخته شده توسط <a href="https://github.com/{{'ilghar2009'}}" target="_blank">ایلقار ابراهیمی</a></p>
+        <p>Created by <a href="https://github.com/{{'ilghar2009'}}" target="_blank">ilghar</a></p>
     </div>
 </div>
 
