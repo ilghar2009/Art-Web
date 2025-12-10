@@ -47,18 +47,20 @@ class ShowController extends Controller
 
         $category->load(['comments']);
 
-        $publicComments = $category?->comments->where('status', True)->map(fn($comment) => [
-            'id' => $comment->id,
-            'text' => $comment->text,
-            'user_id' => $comment->created_by,
-            'name' => $comment->user->name,
+        if($category?->comments)
+            $publicComments = $category?->comments->where('status', True)->map(fn($comment) => [
+                'id' => $comment->id,
+                'text' => $comment->text,
+                'user_id' => $comment->created_by,
+                'name' => $comment->user->name,
 
-            'reply' => $comment->parents ? [
-                'reply_id' => $comment->id,
-                'reply_name' => $comment->user?->name,
-            ]: null,
-
-        ]);
+                'reply' => $comment->parents ? [
+                    'reply_id' => $comment->id,
+                    'reply_name' => $comment->user?->name,
+                ]: null,
+            ]);
+        else
+            $publicComments = null;
 
         return view('front.show.category_show', [
            'id' => $category->category_id,
@@ -73,15 +75,15 @@ class ShowController extends Controller
 
         $gallery->load(['comments', 'category', 'user']);
 
-        $publicComments = $gallery?->comments->where('status', true)->map(fn($comment) => [
+        $publicComments = $gallery?->comments?->where('status', true)->map(fn($comment) => [
             'id' => $comment?->id,
             'text' => $comment?->text,
             'user_id' => $comment?->created_by,
-            'name' => $comment->user?->name,
+            'name' => $comment?->user?->name,
 
-            'reply' => $comment->parent ?[
+            'reply' => $comment?->parent ?[
                 'reply_id' => $comment?->parent->id,
-                'reply_name' => $comment->parent?->user->name,
+                'reply_name' => $comment?->parent?->user->name,
             ]: null,
 
         ]);
