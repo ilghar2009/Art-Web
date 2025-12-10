@@ -4,7 +4,7 @@
   },"disks": [
     {
       "name": "image",
-      "mountTo": "public/"
+      "mountTo": "storage/app/public/"
     }
   ]
 }
