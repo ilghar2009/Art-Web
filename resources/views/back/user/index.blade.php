@@ -55,7 +55,8 @@
 
                                             @if($user->user_id != \Illuminate\Support\Facades\Auth::user()->user_id and $user->name != 'admin')
                                                 <td>
-                                                    <a class="btn btn-danger" href="{{route('user.edit', $user->user_id)}}">Edit role</a>
+                                                    <a class="btn btn-success" href="{{route('user.edit', $user->user_id)}}">Edit role</a>
+                                                    <a class="btn btn-danger" href="{{route('user.delete')}}">Delete</a>
                                                 </td>
                                             @endif
 

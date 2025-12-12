@@ -28,6 +28,7 @@ Route::middleware(['Auth'])->group(function(){
         Route::post('/user/update/{user}', [UserController::class, 'update'])->name('user.update');
         Route::get('/user', [UserController::class, 'index'])->name('user.index');
         Route::get('/user/edit/{user}', [UserController::class, 'edit'])->name('user.edit');
+        Route::get('/user/delete/{user}', [UserController::class, 'delete'])->name('user.delete');
 
     //comment user
     Route::post('/comment/create', [CommentController::class, 'store'])->name('comment.store');
