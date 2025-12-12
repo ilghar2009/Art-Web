@@ -109,11 +109,3 @@ Route::middleware(['Auth'])->group(function(){
         Route::get('/ip', function () {
             return request()->ip();
         });
-
-        Route::get('/debug/headers', function (\Illuminate\Http\Request $request) {
-            return response()->json([
-                'ip'      => $request->ip(),
-                'ips'     => $request->ips(),
-                'headers' => $request->headers->all(),
-            ], 200, [], JSON_PRETTY_PRINT);
-        });

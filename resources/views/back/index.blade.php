@@ -385,7 +385,7 @@ use Illuminate\Support\Facades\Auth;
                               <li>
                                 @foreach($users as $user)
                                   <div class="d-flex">
-                                      <img src="{{$user->img->image??"/assets/images/faces/face2.jpg"}}" alt="user">
+                                      <img src="{{$user->image??"/assets/images/faces/face2.jpg"}}" alt="user">
                                       <div>
                                           <p class="text-info mb-1">{{$user->name}}</p>
                                       </div>

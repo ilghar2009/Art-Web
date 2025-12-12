@@ -380,7 +380,7 @@
             @endphp
         @endif
 
-        <p><a href="{{route('like',$id)}}" class="@if(session('error') != null and $error['error'] !== 'You’ve already liked this gallery.') {{'bi bi-heart-fill'}} @else {{"bi bi-heart"}} @endif"></a> {{$likes_count}}</p>
+        <p><a href="{{route('like',$id)}}" class="@if(session('error') != null and $error['error'] == 'You’ve already liked this gallery.') {{'bi bi-heart-fill'}} @else {{"bi bi-heart"}} @endif"></a> {{$likes_count}}</p>
 
         @if(session('error') != null)
             <p style="font-size:15px; color:#000;">{{$error['error']}}</p>

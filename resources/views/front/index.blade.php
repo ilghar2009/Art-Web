@@ -176,7 +176,7 @@
                                                 @if(session('error') != null)
                                                     @php $error = session('error') @endphp
                                                 @endif
-                                                <a href="{{route('like',$gallery->gallery_id)}}" class="@if(session('error') != null and $error['gallery_id'] == $gallery->gallery_id and $error['error'] !== 'You’ve already liked this gallery.') {{'bi bi-heart-fill'}} @else {{'bi bi-heart'}} @endif">{{$gallery->likes_count}}</a>
+                                                <a href="{{route('like',$gallery->gallery_id)}}" class="@if(session('error') != null and $error['gallery_id'] == $gallery->gallery_id and $error['error'] == 'You’ve already liked this gallery.') {{'bi bi-heart-fill'}} @else {{'bi bi-heart'}} @endif">{{$gallery->likes_count}}</a>
 
                                                 <a href="{{route('show.gallery',$gallery->gallery_id)}}" class="details-link">
                                                     <i class="bi bi-arrow-right"></i>
