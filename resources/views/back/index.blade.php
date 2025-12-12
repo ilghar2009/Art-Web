@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Auth;
                 <div class="col-12 col-xl-4">
                  <div class="justify-content-end d-flex">
                   <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
-                     <i class="mdi mdi-calendar"></i> {{ date('yy, F, d') }}
+                     <i class="mdi mdi-calendar"></i> {{ date('y, F, d') }}
                   </div>
                  </div>
                 </div>

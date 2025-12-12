@@ -104,3 +104,8 @@ Route::middleware(['Auth'])->group(function(){
             Route::get('/show/search/gallery/{id?}', [ShowController::class, 'search_gallery'])->name('search.gallery');
             Route::get('/show/search/category', [ShowController::class, 'search_category'])->name('search.category');
     });
+
+    //test ip
+        Route::get('/ip', function () {
+            return request()->ip();
+        });
