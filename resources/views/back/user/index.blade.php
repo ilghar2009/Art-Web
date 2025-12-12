@@ -58,7 +58,7 @@
                                                     <a class="btn btn-success" href="{{route('user.edit', $user->user_id)}}">Edit role</a>
                                                 </td>
                                                 <td>
-                                                    <a class="btn btn-danger" href="{{route('user.delete')}}">Delete</a>
+                                                    <a class="btn btn-danger" href="{{route('user.delete', $user->user_id)}}">Delete</a>
                                                 </td>
                                             @endif
 
