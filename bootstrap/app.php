@@ -17,5 +17,8 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        //
+        $middleware->trustProxies(
+            at: '*', // یا آی‌پی پروکسی
+            headers: Request::HEADER_X_FORWARDED_ALL
+        );
     })->create();
